@@ -140,39 +140,69 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-I2C协议" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/07/21/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2023/07/21/hello-world/" class="archive-article-date">
-  	<time datetime="2023-07-21T13:19:48.538Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-21</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <h1 id="I2C协议"><a href="#I2C协议" class="headerlink" title="I2C协议"></a>I2C协议</h1><h2 id="1、I2C总线通信协议介绍"><a href="#1、I2C总线通信协议介绍" class="headerlink" title="1、I2C总线通信协议介绍"></a>1、I2C总线通信协议介绍</h2><h3 id="1-1-I2C总线介绍"><a href="#1-1-I2C总线介绍" class="headerlink" title="1.1 I2C总线介绍"></a>1.1 I2C总线介绍</h3><p>​		I2C（IIC，集成电路总线)是一种简单的<strong>双向同步（有一根时钟线SCL或CLK）串行总线</strong>，利用一根<strong>时钟线（SCL）</strong>和一根<strong>数据线（SDA）</strong>构成通信线路，利用上拉电阻将其拉成高电平，表示总线空闲。</p>
+<p>​		I2C总线是一种<strong>主从结构</strong>（Master&#x2F;Slave)总线，一个总线上可以有多个从设备，同一时刻只允许有一个主设备。主设备通常为CPU，用来产生时钟信号，从设备只能响应主设备发起的请求。</p>
+<p><img src="/image-20230722125446533.png" alt="image-20230722125446533"></p>
+<h3 id="1-2-I2C从设备地址"><a href="#1-2-I2C从设备地址" class="headerlink" title="1.2 I2C从设备地址"></a>1.2 I2C从设备地址</h3><p>​		每个从设备都有一个唯一的7位物理地址，通常固化在芯片内部，可以在芯片的datesheet上找到。  I2C总线7位寻址10位寻址两种模式，通常使用7bit模式。因此，理论上I2C总线寻址模式的最大节点数为128或1024个。但I2C有16个保留从机地址。</p>
+<h2 id="2、I2C通信时序"><a href="#2、I2C通信时序" class="headerlink" title="2、I2C通信时序"></a>2、I2C通信时序</h2><p><img src="/image-20230727152033949.png" alt="image-20230727152033949"></p>
+<p>​		SDA和SCL都是<strong>双向线路</strong>，都通过一个电流源或上拉电阻连接到正的电源电压。<strong>当总线空闲时，这两条线路都是高电平</strong>。总线要发送数据时，数据在SDA上从高位项低位依次串行传送每一位数据，每传输一个数据位，主机就在SCL线上产生一个时钟脉冲。</p>
+<h3 id="2-1-起始-停止位"><a href="#2-1-起始-停止位" class="headerlink" title="2.1 起始&#x2F;停止位"></a>2.1 起始&#x2F;停止位</h3><p><img src="/image-20230727153203965.png" alt="image-20230727153203965"></p>
+<p>起始位：当SCL保持高电平时，SDA出现一个下降沿，产生一个起始位</p>
+<p>停止位：当SCL保持高电平时，SDA出现一个上升沿，产生一个停止位</p>
+<h3 id="2-2-数据位收发"><a href="#2-2-数据位收发" class="headerlink" title="2.2 数据位收发"></a>2.2 数据位收发</h3><p>​		对于I2C总线来说，发送的8位从机地址也是一个字节的数据：</p>
+<p>​			1、芯片7位地址</p>
+<p>​			2、读写方向位（R&#x2F;W）：0（W，写），表示主机发送数据给从机。1（R，读），表示从机发送数据给主机。</p>
+<p>​	</p>
+<p>​		选中的从机回复ACK报文给主机。</p>
+<p><img src="/image-20230728140225654.png" alt="image-20230728140225654"></p>
+<p><img src="/image-20230727161829846.png" alt="image-20230727161829846"></p>
+<h3 id="2-3-I2C应答信号"><a href="#2-3-I2C应答信号" class="headerlink" title="2.3 I2C应答信号"></a>2.3 I2C应答信号</h3><p>​		I2C通信发送完一个字节的数据后，接收方应该在第9个位给发送方回复一个ACK&#x2F;NAK信号，用来告知对方是继续通信还是结束通信。</p>
+<p><img src="/image-20230728152117392.png" alt="image-20230728152117392"></p>
+<p>​		继续：给出应答信号（ACK），SDA位低电平</p>
+<p>​		结束：给出非应答信号（NAK），SDA位高电平</p>
+<p>​		接收方发送ACK之前，发送方必须释放SDA线，大部分情况下，正常通信会回复ACK信号，但一下条件会导致NAK信号：</p>
+<ul>
+<li>主机从从设备读完数据，回复NAK通知从设备数据通信完成</li>
+<li>传输期间，接收方不能收到任何数据字节或收到它不能解析的命令或数据</li>
+<li>通信方尚未准备好与主站通信，如正忙看执行其他实时命令</li>
+</ul>
+<h3 id="2-4-主机发送数据流程"><a href="#2-4-主机发送数据流程" class="headerlink" title="2.4 主机发送数据流程"></a>2.4 主机发送数据流程</h3><ol>
+<li><p>主机在检测到总线为空闲时，发送一个启动信号“S”，开始一次通信的开始；</p>
+</li>
+<li><p>主机接着发送一个从设备地址，它由7bit物理地址和 1bit 读写控制位 R&#x2F;W组成(此时 R&#x2F;W&#x3D;0)；</p>
+</li>
+<li><p>相对应的从机收到命令字节后向主机回馈应答信号 ACK(ACK&#x3D;0)；</p>
+</li>
+<li><p>主机收到从机的应答信号后开始发送第一个字节的数据；</p>
+</li>
+<li><p>从机收到数据后返回一个应答信号ACK；</p>
+</li>
+<li><p>主机收到应答信号后再发送下一个数据字节；</p>
+</li>
+<li><p>主机发完最后一个字节并收到 ACK后，向从机发送一个停止信号P结束本次通信并释放总线；</p>
+</li>
+<li><p>从机收到P信号后也退出与主机之间的通信。</p>
+<p><img src="/image-20230728153143133.png" alt="image-20230728153143133"></p>
+</li>
+</ol>
+<h3 id="2-5-主机接收数据流程"><a href="#2-5-主机接收数据流程" class="headerlink" title="2.5 主机接收数据流程"></a>2.5 主机接收数据流程</h3><ol>
+<li>主机发送启动信号后，接着发送地址字节(其中 R&#x2F;W&#x3D;1)；</li>
+<li>对应的从机收到地址字节后，返回一个应答信号并向主机发送数据：</li>
+<li>主机收到数据后向从机反馈一个应答信号ACK；</li>
+<li>从机收到应答信号后再向主机发送下一个数据；</li>
+<li>当主机完成接收数据后，向从机发送一个 NAK，从机收到非应答信号后便停止发送；</li>
+<li>主机发送非应答信号后，再发送一个停止信号，释放总线结束通信。</li>
+</ol>
+<p><img src="/image-20230728153257820.png" alt="image-20230728153257820"></p>
+<h3 id="2-6-时钟延展"><a href="#2-6-时钟延展" class="headerlink" title="2.6 时钟延展"></a>2.6 时钟延展</h3><p>​		I2C是一种同步通信模式，主设备通过SCL线给从设备提供精确的时钟信号和从设备通信，当从设备的通信速率跟不上主设备时就可以使用时钟延展（Clock Stretching)。</p>
+<p>​		Clock Stretching只是I2C通信的一个可选项，通常在I2C接口的传感器中比较常见，如温湿度传感器SHT20&#x2F;30。</p>
+<p>​		在I2C的主从通信过程中，总线上的SCL时钟总是有主设备来产生和控制，如果从机跟不上主机的速率，主机可以在数据传输的第9个位时钟（ACK）时主动将SCL时钟拉低，通知主设备暂停此时的传输。当从设备准备好后再将SCL释放通知主设备数据已经就位，可以继续通信。</p>
+<p><img src="/image-20230728161318987.png" alt="image-20230728161318987"></p>
 
       
 
@@ -185,7 +215,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2023/07/21/hello-world/">展开全文 >></a>
+          <a class="article-more-a" href="/2023/07/21/I2C%E5%8D%8F%E8%AE%AE/">展开全文 >></a>
         </p>
       
 
