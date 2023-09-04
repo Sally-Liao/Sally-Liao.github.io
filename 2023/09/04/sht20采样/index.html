@@ -6,15 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives | Li的博客</title>
+  <title>Li的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="STM32  SHT20温湿度采样一、开发板实例:STM32L431RCT6​		开发板采用意法半导体(ST)公司的低功耗 Arm® Cortex®-M4 处理器STM32L431RCT6，其工作主频高达80MHz，并提供256KB Flash, 64KB SRAM存储空间。   二、SHT20原理技术参数：  工作电压：2.1~3.6VDC（请勿使用5V供电！） 信号输出：I2C数字输出 温度测">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Li的博客">
-<meta property="og:url" content="http://example.com/archives/index.html">
+<meta property="og:url" content="http://example.com/2023/09/04/sht20%E9%87%87%E6%A0%B7/index.html">
 <meta property="og:site_name" content="Li的博客">
+<meta property="og:description" content="STM32  SHT20温湿度采样一、开发板实例:STM32L431RCT6​		开发板采用意法半导体(ST)公司的低功耗 Arm® Cortex®-M4 处理器STM32L431RCT6，其工作主频高达80MHz，并提供256KB Flash, 64KB SRAM存储空间。   二、SHT20原理技术参数：  工作电压：2.1~3.6VDC（请勿使用5V供电！） 信号输出：I2C数字输出 温度测">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="c:\Users\asus\blog\source_posts\images\image-20230904204844167.png">
+<meta property="og:image" content="c:\Users\asus\blog\source_posts\images\image-20230904205003629.png">
+<meta property="og:image" content="c:\Users\asus\blog\source\assets\img\image-20230904210441054.png">
+<meta property="og:image" content="c:\Users\asus\blog\source_posts\images\image-20230904205429935.png">
+<meta property="og:image" content="c:\Users\asus\blog\source\assets\img\image-20230904211119493.png">
+<meta property="og:image" content="c:\Users\asus\blog\source\assets\img\image-20230904211359955.png">
+<meta property="og:image" content="c:\Users\asus\blog\source\assets\img\image-20230904211736023.png">
+<meta property="og:image" content="c:\Users\asus\blog\source\assets\img\image-20230904213659139.png">
+<meta property="article:published_time" content="2023-09-04T12:44:24.917Z">
+<meta property="article:modified_time" content="2023-09-04T13:41:33.845Z">
 <meta property="article:author" content="Li">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:\Users\asus\blog\source_posts\images\image-20230904204844167.png">
   
     <link rel="alternative" href="/atom.xml" title="Li的博客" type="application/atom+xml">
   
@@ -138,64 +151,156 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-sht20采样" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="STM32-SHT20温湿度采样"><a href="#STM32-SHT20温湿度采样" class="headerlink" title="STM32  SHT20温湿度采样"></a>STM32  SHT20温湿度采样</h1><h3 id="一、开发板实例-STM32L431RCT6"><a href="#一、开发板实例-STM32L431RCT6" class="headerlink" title="一、开发板实例:STM32L431RCT6"></a>一、开发板实例:STM32L431RCT6</h3><p>​		开发板采用意法半导体(ST)公司的低功耗 <a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=Arm&spm=1001.2101.3001.7020">Arm</a>® Cortex®-M4 处理器STM32L431RCT6，其工作主频高达80MHz，并提供256KB Flash, 64KB SRAM存储空间。</p>
+<p><img src="C:\Users\asus\blog\source_posts\images\image-20230904204844167.png" alt="image-20230904204844167"></p>
+<p><img src="C:\Users\asus\blog\source_posts\images\image-20230904205003629.png" alt="image-20230904205003629"></p>
+<h3 id="二、SHT20原理"><a href="#二、SHT20原理" class="headerlink" title="二、SHT20原理"></a>二、SHT20原理</h3><p>技术参数：</p>
+<ul>
+<li>工作电压：2.1~3.6VDC（请勿使用5V供电！）</li>
+<li>信号输出：I2C数字输出</li>
+<li>温度测量范围：-40~125°C    温度测量精度±0.3 °C </li>
+<li>湿度测量范围：0~100%RH  湿度测量精度±3%</li>
+<li>能耗：3.2uW（8位测量，1次&#x2F;秒）</li>
+</ul>
+<p><img src="C:\Users\asus\blog\source\assets\img\image-20230904210441054.png" alt="image-20230904210441054"></p>
+<p><img src="C:\Users\asus\blog\source_posts\images\image-20230904205429935.png" alt="image-20230904205429935"></p>
+<p>​		SHT20在采样时有两种工作模式：hold master模式和no hold master模式，具体采用哪种模式由命令决定。</p>
+<p>​		其中，hold master模式（温度命令为0xE3,湿度命令为0xE5）将会使用Clock Stretching机制来与MCU通信，工作时序如下：</p>
+<p><img src="C:\Users\asus\blog\source\assets\img\image-20230904211119493.png" alt="image-20230904211119493"></p>
+<p>​		而no hold master模式（温度命令为0xF3,湿度命令为0xF5），工作时序如下：</p>
+<p><img src="C:\Users\asus\blog\source\assets\img\image-20230904211359955.png" alt="image-20230904211359955"></p>
+<h3 id="三、采样"><a href="#三、采样" class="headerlink" title="三、采样"></a>三、采样</h3><h4 id="1、基于HAL库实现I2C采样"><a href="#1、基于HAL库实现I2C采样" class="headerlink" title="1、基于HAL库实现I2C采样"></a>1、基于HAL库实现I2C采样</h4><p>​		首先配置SHT20连接的PB6和PB7为I2C模式，Ctrl+S保存代码，会自动生成I2C总线初始化代码。</p>
+<p><img src="C:\Users\asus\blog\source\assets\img\image-20230904211736023.png" alt="image-20230904211736023"></p>
+<h4 id="2、GPIO模拟I2C实现采样"><a href="#2、GPIO模拟I2C实现采样" class="headerlink" title="2、GPIO模拟I2C实现采样"></a>2、GPIO模拟I2C实现采样</h4><p>​		ST 公司的单片机(包括 STM8、STM32系列)I2C接口普遍存在总线死锁在BUSY状态无法恢复的现象，有些时候 MCU复位也无法恢复，只有断电才行。产生12C总线故障的方法简单而粗暴：在12C总线工作过程中，用镊子把SCL和SDA两个信号短路一下，很容易进入BUSY死锁状态，长时间短路也可能产生超时。HAL_I2C_Init()、HAL_I2C_Master_Transmit()、HAL_I2C_Master_Receive()等函数返回值分别为HAL_BUSY(0x02)、HAL_TIMEOUT(0x03)。</p>
+<p>​		12C总线锁死时，用万用表测试12C信号电压， SCL、SDA均为低电平。如果调用函数：HAL_I2C_Delnit(&amp;hi2c1),会函数释放IO口回到 GPIO 的默认状态(Input),此时再测 SCL、SDA电压,均为高电平。这说明总线是被 MCU 这边的 Master拉低的，而不是被 Slave 拉低的，当然也存在Slave 刚好输出低电平拉低 SDA的可能。</p>
+<p>​		总之， ST公司的单片机我们在做项目应用时通常都不会直接使用硬件12C控制器实现，而是通过软件编程使用GPIO模拟I2C总线时序来实现。另外，一般CPU上的I2C总线个数有限制，很多引脚容易冲突导致没有I2C接口使用，此时我们也可以直接拿两个GPIO口来模拟I2C总线。</p>
+<p><img src="C:\Users\asus\blog\source\assets\img\image-20230904213659139.png" alt="image-20230904213659139"></p>
+<h4 id="3、代码实现"><a href="#3、代码实现" class="headerlink" title="3、代码实现"></a>3、代码实现</h4><p>SHT20的驱动源文件sht20.c</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * sht20.c</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  Created on: Jul 21, 2023</span></span><br><span class="line"><span class="comment"> *      Author: asus</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stm32l4xx_hal.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;sht20.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;tim.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*通过该宏控制是使用HAL库里的I2C接口还是CPIO模拟串口的接口*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CONFIG_GPIO_I2C</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> CONFIG_GPIO_I2C</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;gpio_i2c_sht20.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;i2c.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//#define CONFIG_SHT20_DEBUG //用于调试，打开时由printf，发布产品时注释掉，printf语句会被替换成do&#123;&#125;while(0)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> CONFIG_SHT20_DEBUG</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> sht20_print(format,args...)printf(format,##args)</span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> sht20_print(format,args...)do&#123;&#125;while(0)</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">SHT20_SampleData</span><span class="params">(<span class="type">uint8_t</span> cmd,<span class="type">float</span> *data)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">uint8_t</span> buf[<span class="number">2</span>];</span><br><span class="line">	<span class="type">float</span> sht20_data = <span class="number">0.0</span>;</span><br><span class="line">	<span class="type">int</span> rv;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> CONFIG_GPIO_I2C</span></span><br><span class="line">	rv = I2C_Master_Transmit(<span class="number">0x80</span>,&amp;cmd,<span class="number">1</span>); <span class="comment">//GPIO模拟I2C采样</span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">	rv = HAL_I2C_Master_Transmit(&amp;hi2c1,SHT20_ADDR_WR,&amp;cmd,<span class="number">1</span>,<span class="number">0xFFFF</span>);<span class="comment">//基于HAL库实现I2C采样</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(<span class="number">0</span> != rv)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(cmd == <span class="number">0xF3</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		HAL_Delay(<span class="number">85</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(cmd == <span class="number">0xF5</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		HAL_Delay(<span class="number">29</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> CONFIG_GPIO_I2C</span></span><br><span class="line">	rv = I2C_Master_Receive(<span class="number">0x81</span>,buf,<span class="number">2</span>);</span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">	rv = HAL_I2C_Master_Receive(&amp;hi2c1,SHT20_ADDR_RD,buf,<span class="number">2</span>,<span class="number">0xFFFF</span>);</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(<span class="number">0</span> != rv)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	sht20_data = buf[<span class="number">0</span>];</span><br><span class="line">	sht20_data=<span class="built_in">ldexp</span>(sht20_data,<span class="number">8</span>);</span><br><span class="line">	sht20_data += buf[<span class="number">1</span>]&amp;<span class="number">0xFC</span>;</span><br><span class="line">	<span class="keyword">if</span>(cmd == <span class="number">0xF3</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		*data = (<span class="number">-46.85</span>+<span class="number">175.72</span>*sht20_data/<span class="number">65536</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(cmd == <span class="number">0xF5</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		*data = (<span class="number">-6</span>+<span class="number">125</span>*sht20_data/<span class="number">65536</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> *data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>SHT20的驱动头文件sht20.h</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * sht20.h</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  Created on: Jul 21, 2023</span></span><br><span class="line"><span class="comment"> *      Author: asus</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> INC_SHT20_H_</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INC_SHT20_H_</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stm32l4xx_hal.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SHT20_ADDR 0x40</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SHT20_ADDR_WR (SHT20_ADDR&lt;&lt;1)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SHT20_ADDR_RD ((SHT20_ADDR&lt;&lt;1) | 0x01)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SOFT_RESET_CMD 0xFE</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> TEMP_CMD 0xE3</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> RH_CMD 0xE5</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="type">int</span> <span class="title function_">SHT20_SampleData</span><span class="params">(<span class="type">uint8_t</span> cmd,<span class="type">float</span> *data)</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">/* INC_SHT20_H_ */</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>修改main.c文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">int report_tempRH_json(void)</span><br><span class="line">&#123;</span><br><span class="line">	char buf[128],temp[20],humd[20];</span><br><span class="line">	float temperature,humidity;</span><br><span class="line"></span><br><span class="line">	SHT20_SampleData(0xF3,&amp;temperature);//温度</span><br><span class="line">	SHT20_SampleData(0xF5,&amp;humidity);//湿度</span><br><span class="line"></span><br><span class="line">	memset(buf,0,sizeof(buf));</span><br><span class="line">	snprintf(buf,sizeof(buf),&quot;&#123;\&quot;Temperature\&quot;:\&quot;%.2f\&quot;,\&quot;Humidity\&quot;:\&quot;%.2f\&quot;&#125;&quot;,temperature,humidity);</span><br><span class="line">//转换为字符串形式打印出来</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	HAL_UART_Transmit(&amp;huart1,(uint8_t *)buf,strlen(buf),0xFFFF);</span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/09/04/sht20%E9%87%87%E6%A0%B7/" class="archive-article-date">
-  	<time datetime="2023-09-04T12:44:24.917Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-04</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2023/09/04/sht20%E9%87%87%E6%A0%B7/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/07/21/I2C%E5%8D%8F%E8%AE%AE/" class="archive-article-date">
-  	<time datetime="2023-07-21T13:19:48.538Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-21</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2023/07/21/I2C%E5%8D%8F%E8%AE%AE/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+        
+    </div>
+</aside>
+
+
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -218,8 +323,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
