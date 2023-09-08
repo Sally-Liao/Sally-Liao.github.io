@@ -8,17 +8,20 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>Li的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="SPI协议">
+  <meta name="description" content="SPI协议SPI协议相关介绍">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Li的博客">
 <meta property="og:url" content="http://example.com/2023/09/05/SPI%E5%8D%8F%E8%AE%AE/index.html">
 <meta property="og:site_name" content="Li的博客">
-<meta property="og:description" content="SPI协议">
+<meta property="og:description" content="SPI协议SPI协议相关介绍">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:\Users\asus\blog\source\assets\img\image-20230908135926969.png">
+<meta property="og:image" content="c:\Users\asus\blog\source\assets\img\image-20230908141256039.png">
 <meta property="article:published_time" content="2023-09-05T06:32:49.252Z">
-<meta property="article:modified_time" content="2023-09-06T13:36:10.748Z">
+<meta property="article:modified_time" content="2023-09-08T07:19:11.661Z">
 <meta property="article:author" content="Li">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:\Users\asus\blog\source\assets\img\image-20230908135926969.png">
   
     <link rel="alternative" href="/atom.xml" title="Li的博客" type="application/atom+xml">
   
@@ -150,7 +153,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="SPI协议"><a href="#SPI协议" class="headerlink" title="SPI协议"></a>SPI协议</h1>
+        <h1 id="SPI协议"><a href="#SPI协议" class="headerlink" title="SPI协议"></a>SPI协议</h1><p>SPI协议相关介绍</p>
+<span id="more"></span>
+
+
+
+<h2 id="一、SPI协议介绍"><a href="#一、SPI协议介绍" class="headerlink" title="一、SPI协议介绍"></a>一、SPI协议介绍</h2><h3 id="1、简介"><a href="#1、简介" class="headerlink" title="1、简介"></a>1、简介</h3><p>​		SPI协议是一种高速全双工同步串行通信协议，由一个主设备和一个或多个从设备组成。</p>
+<p>​		四线协议：MISO(Master Input Slave Output)&#x2F;SDI(Serial Data Input)、</p>
+<p>MOSI(Master Output Slave Input)&#x2F;SDO(Serial Data Output)、SCLK(Synchronous Clock)、CS(Chip Select)</p>
+<p>1、MISO，主设备数据输入，从设备数据输出；</p>
+<p>2、MOSI，主设备数据输出，从设备数据输入；</p>
+<p>3、SCLK，同步时钟信号，由主设备产生;</p>
+<p>4、CS，从设备使能(片选)信号，由主设备控制，低电平为选中。当总线上有多个从设备的时候，主设备如果需要和某个从设备通信，就将该设备对应的片选引脚拉低使能；</p>
+<p>​		SPI 采用两根数据线实现全双工的数据通信（ MOSI 和 MISO），从而到达快速的通信速率。</p>
+<h3 id="2、SPI总线传输模式"><a href="#2、SPI总线传输模式" class="headerlink" title="2、SPI总线传输模式"></a>2、SPI总线传输模式</h3><p>​		主设备根据将要交换的数据来产生相应的时钟脉冲（Clock Pulse)，时钟脉冲组成时钟信号（Clock Signal），时钟信号通过时钟极性（CPOL,Clock Polarity）和时钟相位（CPHA,Clock Phase）控制两个SPI设备何时交换数据以及何时对接收的数据进行采样。</p>
+<ul>
+<li>CPOL(Clock Polarity，时钟的极性): 规约 SPI 总线在空闲时, SCK时钟信号是高电平1还是低电平0；</li>
+<li>CPHA(Clock Phase，时钟的相位): 规约 SPI 设备是在SCK时钟信号上升沿还是下降沿触发数据采样；</li>
+</ul>
+<p>​		SPI 总线传输一共有 4 种模式：</p>
+<ol>
+<li><p>模式 0：CPOL&#x3D; 0，CPHA&#x3D;0。SCK 串行时钟线空闲是为低电平，数据在 SCK 时钟的上升沿被采样， 数据在 SCK 时钟的下降沿切换；</p>
+</li>
+<li><p>模式 1：CPOL&#x3D; 0，CPHA&#x3D;1。SCK 串行时钟线空闲是为低电平，数据在 SCK 时钟的下降沿被采样， 数据在 SCK 时钟的上升沿切换；</p>
+</li>
+<li><p>模式 2：CPOL&#x3D; 1，CPHA&#x3D;0。SCK 串行时钟线空闲是为高电平，数据在 SCK 时钟的下降沿被采样， 数据在 SCK 时钟的上升沿切换；</p>
+</li>
+<li><p>模式 3：CPOL&#x3D; 1，CPHA&#x3D;1。SCK 串行时钟线空闲是为高电平，数据在 SCK 时钟的上升沿被采样， 数据在 SCK 时钟的下降沿切换；</p>
+</li>
+</ol>
+<p><img src="C:\Users\asus\blog\source\assets\img\image-20230908135926969.png" alt="image-20230908135926969"></p>
+<h3 id="3、SPI总线数据交换"><a href="#3、SPI总线数据交换" class="headerlink" title="3、SPI总线数据交换"></a>3、SPI总线数据交换</h3><p>​		一个 Slave 设备要想能够接收到 Master 发过来的控制信号, 必须在此之前能够被 Master 设备进行访 问 (Access). 所以, Master 设备必须首先通过拉低 SS&#x2F;CS 管脚对 Slave 设备进行片选, 把想要访问的Slave 设备选上。</p>
+<p>​		SPI 设备间的数据传输之所以又被称为数据交换, 是因为 SPI 协议规定一个 SPI 设备不能在数据通信 过程中仅仅只充当一个 “发送者(Transmitter)” 或者 “接收者(Receiver)”。在发送一个字节的同时也会收到对方一个字节的数据。</p>
+<p><img src="C:\Users\asus\blog\source\assets\img\image-20230908141256039.png" alt="image-20230908141256039"></p>
+<p>​		SPI数据传输实际上是主从设备两个移位寄存器的数据交换过程，所以SPI的读功能实际上可以由写功能实现，即随便写一个字节的无效数据（Dummy Data）即可。</p>
+
       
 
       
@@ -251,7 +288,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SPI%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.</span> <span class="toc-text">SPI协议</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SPI%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.</span> <span class="toc-text">SPI协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81SPI%E5%8D%8F%E8%AE%AE%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">一、SPI协议介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.1.</span> <span class="toc-text">1、简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81SPI%E6%80%BB%E7%BA%BF%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.1.2.</span> <span class="toc-text">2、SPI总线传输模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81SPI%E6%80%BB%E7%BA%BF%E6%95%B0%E6%8D%AE%E4%BA%A4%E6%8D%A2"><span class="toc-number">1.1.3.</span> <span class="toc-text">3、SPI总线数据交换</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
