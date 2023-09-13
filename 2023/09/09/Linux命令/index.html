@@ -16,7 +16,7 @@
 <meta property="og:description" content="Linux基本命令">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-09-09T08:52:53.543Z">
-<meta property="article:modified_time" content="2023-09-12T14:48:12.041Z">
+<meta property="article:modified_time" content="2023-09-13T08:30:39.537Z">
 <meta property="article:author" content="Li">
 <meta name="twitter:card" content="summary">
   
@@ -175,6 +175,27 @@
 <li>只有系统在安装时创建的用户具有sudo权限的，并不是所有新创建的用户默认都具有sudo权限的，如果需要sudo则需要root授权。</li>
 <li>root用户对系统具有最高管理权限，它可以对系统进行任意的修改（相当于Windows Administrator)，如安装软件，安装硬盘，修改系统配置，修改网络配置等所有涉及到系统修改的操作，都只有root才有权限。</li>
 </ul>
+<h2 id="修改源"><a href="#修改源" class="headerlink" title="修改源"></a>修改源</h2><ol>
+<li>换源加快下载速度<br>查看版本信息: lsb_release -a 查看版本号(release)代号(codename)</li>
+<li>备份sources.list文件</li>
+<li>百度对应的版本号代号网易源到 vim &#x2F;etc&#x2F;apt&#x2F;sources.list</li>
+<li>退出并更新源 sudo apt update</li>
+</ol>
+<h2 id="卸载软件"><a href="#卸载软件" class="headerlink" title="卸载软件"></a>卸载软件</h2><ul>
+<li>apt的底层安装包名称是xxx.deb，其安装命令为dpkg -i，在安装软件包时会将.deb文件放在&#x2F;var&#x2F;cache&#x2F;apt&#x2F;archives&#x2F;中</li>
+<li>apt remove	删除已安装的软件包，不会删除依赖文件，保留配置文件</li>
+<li>apt purge	删除已安装的软件包及其依赖文件，不保留配置文件</li>
+<li>apt clean	删除以已经安装过的软件安装包，自动将&#x2F;var&#x2F;cache&#x2F;apt&#x2F;archives&#x2F;下的所有deb删掉，相当于清理下载的软件安装包</li>
+</ul>
+<h2 id="文件上传下载"><a href="#文件上传下载" class="headerlink" title="文件上传下载"></a>文件上传下载</h2><p>sudo apt install -y lrzsz命令安装lrsz软件包</p>
+<p>sz吧Linux下的文件传入windows下，rz把windows下的文件传入Linux</p>
+<h2 id="修改Shell配置"><a href="#修改Shell配置" class="headerlink" title="修改Shell配置"></a>修改Shell配置</h2><p>ubuntu:</p>
+<ol>
+<li>vim ~&#x2F;.bashrc 修改文件</li>
+<li>source ~&#x2F;.bashrc 让修改内容生效(也可以使用. ~&#x2F;.bashrc生效)</li>
+</ol>
+<p>CentOS:</p>
+<p>​	修改.bash_profile 文件</p>
 <h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><h3 id="ls命令"><a href="#ls命令" class="headerlink" title="ls命令"></a>ls命令</h3><ul>
 <li>-a 显示所有文件及目录 (<strong>.</strong> 开头的隐藏文件也会列出)</li>
 <li>-d 只列出目录（不递归列出目录内的文件）。</li>
@@ -255,13 +276,23 @@
 <li>clear	清屏命令</li>
 </ul>
 <p>set -o vi	命令可以将Linux命令行设置为vi模式，按i进入到插入模式编辑命令，按ESC进入到Normal模式</p>
-<h2 id="修改Shell配置"><a href="#修改Shell配置" class="headerlink" title="修改Shell配置"></a>修改Shell配置</h2><p>ubuntu:</p>
-<ol>
-<li>vim ~&#x2F;.bashrc 修改文件</li>
-<li>source ~&#x2F;.bashrc 让修改内容生效(也可以使用. ~&#x2F;.bashrc生效)</li>
-</ol>
-<p>CentOS:</p>
-<p>​	修改.bash_profile 文件</p>
+<h3 id="前台和后台运行"><a href="#前台和后台运行" class="headerlink" title="前台和后台运行"></a>前台和后台运行</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">//此时在前台运行，无法继续输入执行命令，必须Ctrl+C终止上一条命令</span><br><span class="line">li@ubuntu22:~$ ping 192.168.56.1	</span><br><span class="line">PING 192.168.56.1 (192.168.56.1) 56(84) bytes of data.</span><br><span class="line">From 192.168.56.101 icmp_seq=6 Destination Host Unreachable</span><br><span class="line">ls</span><br><span class="line">From 192.168.56.101 icmp_seq=7 Destination Host Unreachable</span><br><span class="line">^C</span><br><span class="line"></span><br><span class="line">//在命令后加上后台运行符 &amp;，就可以放到后台运行，可以继续输入执行命令</span><br><span class="line">li@ubuntu22:~$ ping 192.168.56.1 &amp;</span><br><span class="line">[1] 3019</span><br><span class="line">li@ubuntu22:~$ PING 192.168.56.1 (192.168.56.1) 56(84) bytes of data.</span><br><span class="line">From 192.168.56.101 icmp_seq=6 Destination Host Unreachable</span><br><span class="line">ls</span><br><span class="line">Desktop    fifo    fork1.c  hello.c    mnt    Pictures   ptr_size.c  tftpboot</span><br><span class="line"></span><br><span class="line">//但屏幕一直在打印其结果，想停止这个命令，需要县使用fg 1命令将其调到前台，再按Ctrl+C终止命令,</span><br><span class="line">fg 1	//这里的1是任务号，可以使用jobs命令查看</span><br><span class="line">ping 192.168.56.1</span><br><span class="line">^C</span><br><span class="line"></span><br><span class="line">li@ubuntu22:~$ ping 192.168.56.1 &gt; /dev/null 2&gt;&amp;1 &amp;</span><br><span class="line">[1] 3036</span><br><span class="line">li@ubuntu22:~$ jobs</span><br><span class="line">[1]+  Running                 ping 192.168.56.1 &gt; /dev/null 2&gt;&amp;1 &amp;</span><br><span class="line">li@ubuntu22:~$ fg 1</span><br><span class="line">ping 192.168.56.1 &gt; /dev/null 2&gt;&amp;1</span><br><span class="line">^Cli@ubuntu22:~$ jobs</span><br><span class="line">li@ubuntu22:~$ </span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h3><p>​		Linux是支持多进程运行的分时操作系统，在操作系统启动时Linux内核会创建一个特殊进程–init进程，它会创建并启动所有其他要求在系统启动时自动运行的服务进程。这是由Linux内核创建并以root权限运行，所以并不能被杀死（root也不可以）。这是系统的第一个进程，进程号永远为1。</p>
+<h4 id="进程查询"><a href="#进程查询" class="headerlink" title="进程查询"></a>进程查询</h4><ul>
+<li>ps	查看当前Shell下正在执行的进程</li>
+<li>ps aux	查看当前系统所有正在运行的进程</li>
+<li>ps aux | grep sshd | grep -v grep	查看SSH服务进程</li>
+<li>ps aux | grep li | grep -v grep	查看用户正在运行的进程</li>
+<li>ps aux | grep init | grep -v grep | awk ‘{print $2}’	查看init进程的进程号</li>
+</ul>
+<h4 id="进程终止"><a href="#进程终止" class="headerlink" title="进程终止"></a>进程终止</h4><p>​		kill或killall命令终止进程的运行</p>
+<ul>
+<li>kill	用进程号杀死进程</li>
+<li>killall	用进程名来终止进程，注意需要sudo权限</li>
+</ul>
 
       
 
@@ -363,7 +394,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">Linux基本命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text">Linux目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="toc-number">1.2.</span> <span class="toc-text">Linux软件安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4"><span class="toc-number">1.3.</span> <span class="toc-text">命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ls%E5%91%BD%E4%BB%A4"><span class="toc-number">1.3.1.</span> <span class="toc-text">ls命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cd%E5%91%BD%E4%BB%A4"><span class="toc-number">1.3.2.</span> <span class="toc-text">cd命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mkdir%E5%91%BD%E4%BB%A4"><span class="toc-number">1.3.3.</span> <span class="toc-text">mkdir命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cp%E5%91%BD%E4%BB%A4"><span class="toc-number">1.3.4.</span> <span class="toc-text">cp命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mv%E5%91%BD%E4%BB%A4"><span class="toc-number">1.3.5.</span> <span class="toc-text">mv命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rm%E5%91%BD%E4%BB%A4"><span class="toc-number">1.3.6.</span> <span class="toc-text">rm命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pwd%E5%91%BD%E4%BB%A4"><span class="toc-number">1.3.7.</span> <span class="toc-text">pwd命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E7%BD%AE%E6%8D%A2%E7%AC%A6"><span class="toc-number">1.3.7.1.</span> <span class="toc-text">命令置换符</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#alias%E5%91%BD%E4%BB%A4"><span class="toc-number">1.3.8.</span> <span class="toc-text">alias命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%86%E5%8F%B2%E5%91%BD%E4%BB%A4"><span class="toc-number">1.3.9.</span> <span class="toc-text">历史命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9Shell%E9%85%8D%E7%BD%AE"><span class="toc-number">1.4.</span> <span class="toc-text">修改Shell配置</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">Linux基本命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text">Linux目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="toc-number">1.2.</span> <span class="toc-text">Linux软件安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%BA%90"><span class="toc-number">1.3.</span> <span class="toc-text">修改源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%B8%E8%BD%BD%E8%BD%AF%E4%BB%B6"><span class="toc-number">1.4.</span> <span class="toc-text">卸载软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD"><span class="toc-number">1.5.</span> <span class="toc-text">文件上传下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9Shell%E9%85%8D%E7%BD%AE"><span class="toc-number">1.6.</span> <span class="toc-text">修改Shell配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4"><span class="toc-number">1.7.</span> <span class="toc-text">命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ls%E5%91%BD%E4%BB%A4"><span class="toc-number">1.7.1.</span> <span class="toc-text">ls命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cd%E5%91%BD%E4%BB%A4"><span class="toc-number">1.7.2.</span> <span class="toc-text">cd命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mkdir%E5%91%BD%E4%BB%A4"><span class="toc-number">1.7.3.</span> <span class="toc-text">mkdir命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cp%E5%91%BD%E4%BB%A4"><span class="toc-number">1.7.4.</span> <span class="toc-text">cp命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mv%E5%91%BD%E4%BB%A4"><span class="toc-number">1.7.5.</span> <span class="toc-text">mv命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rm%E5%91%BD%E4%BB%A4"><span class="toc-number">1.7.6.</span> <span class="toc-text">rm命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pwd%E5%91%BD%E4%BB%A4"><span class="toc-number">1.7.7.</span> <span class="toc-text">pwd命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E7%BD%AE%E6%8D%A2%E7%AC%A6"><span class="toc-number">1.7.7.1.</span> <span class="toc-text">命令置换符</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#alias%E5%91%BD%E4%BB%A4"><span class="toc-number">1.7.8.</span> <span class="toc-text">alias命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%86%E5%8F%B2%E5%91%BD%E4%BB%A4"><span class="toc-number">1.7.9.</span> <span class="toc-text">历史命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E5%8F%B0%E5%92%8C%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C"><span class="toc-number">1.7.10.</span> <span class="toc-text">前台和后台运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="toc-number">1.7.11.</span> <span class="toc-text">进程管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.7.11.1.</span> <span class="toc-text">进程查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%BB%88%E6%AD%A2"><span class="toc-number">1.7.11.2.</span> <span class="toc-text">进程终止</span></a></li></ol></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
