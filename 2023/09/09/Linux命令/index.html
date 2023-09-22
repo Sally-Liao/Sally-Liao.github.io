@@ -19,11 +19,11 @@
 <meta property="og:image" content="c:\Users\asus\blog\source\assets\img\image-20230914215046162.png">
 <meta property="og:image" content="c:\Users\asus\blog\source\assets\img\image-20230914221542991.png">
 <meta property="og:image" content="c:\Users\asus\blog\source\assets\img\image-20230915170303179.png">
-<meta property="og:image" content="c:\Users\asus\blog\source\assets\img\image-20230915174829586.png">
-<meta property="og:image" content="c:\Users\asus\blog\source\assets\img\image-20230915174943354.png">
 <meta property="og:image" content="c:\Users\asus\blog\source\assets\img\image-20230917155944943.png">
+<meta property="og:image" content="c:\Users\asus\blog\source\assets\img\image-20230922165754792.png">
+<meta property="og:image" content="c:\Users\asus\blog\source\assets\img\image-20230920163623169.png">
 <meta property="article:published_time" content="2023-09-09T08:52:53.543Z">
-<meta property="article:modified_time" content="2023-09-17T13:25:25.635Z">
+<meta property="article:modified_time" content="2023-09-22T14:38:00.608Z">
 <meta property="article:author" content="Li">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="c:\Users\asus\blog\source\assets\img\image-20230914212259087.png">
@@ -160,7 +160,7 @@
       
         <h1 id="Linux相关知识"><a href="#Linux相关知识" class="headerlink" title="Linux相关知识"></a>Linux相关知识</h1><span id="more"></span>
 
-<h2 id="Linux目录结构"><a href="#Linux目录结构" class="headerlink" title="Linux目录结构"></a>Linux目录结构</h2><ul>
+<h2 id="Linux目录结构"><a href="#Linux目录结构" class="headerlink" title="Linux目录结构"></a>Linux目录结构</h2><h3 id="Linux根目录"><a href="#Linux根目录" class="headerlink" title="Linux根目录"></a>Linux根目录</h3><ul>
 <li>&#x2F;bin：系统必须命令，如cp、cat、ls、mkdir、mv等</li>
 <li>&#x2F;sbin：系统管理员命令，如ifconfig、fdisk、mknod、reboot、shutdown等</li>
 <li>&#x2F;boot：系统开机启动相关文件，如grub配置，内核镜像文件vmlunuz等</li>
@@ -176,13 +176,153 @@
 <li>&#x2F;media：光盘DVD或软盘等文件</li>
 <li>&#x2F;mnt：其他挂载点</li>
 </ul>
+<h3 id="文件和目录"><a href="#文件和目录" class="headerlink" title="文件和目录"></a>文件和目录</h3><p>Linux系统下一切皆是文件，命令、文件、目录严格区分大小写</p>
+<p>通常情况下，文件名的字符包括：字母、数字、”.”、”_”、”-“</p>
+<p>Linux允许再文件名中使用除上述符号外的其他符号，但不建议这样做</p>
+<p>文件名长度最多可到256个字符</p>
+<p>Linux中使用的一些特殊字符：</p>
+<table>
+<thead>
+<tr>
+<th align="center">符号</th>
+<th align="center">表示</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">.</td>
+<td align="center">当前目录</td>
+</tr>
+<tr>
+<td align="center">..</td>
+<td align="center">上一级目录</td>
+</tr>
+<tr>
+<td align="center">&#x2F;</td>
+<td align="center">根目录</td>
+</tr>
+<tr>
+<td align="center">~</td>
+<td align="center">当前用户的主目录（home）</td>
+</tr>
+<tr>
+<td align="center">以.开始命令的文件或目录</td>
+<td align="center">隐藏文件或文件夹</td>
+</tr>
+</tbody></table>
+<h3 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h3><p>绝对路径：从&#x2F;(根目录)开始的路径</p>
+<p>相对路径：不是以绝对路径为起始路径的路径，例如以当前路径为起始.&#x2F;（当前路径）..&#x2F;（父路径）</p>
+<h3 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">li@Ubuntu22:~$ command [-options] parameter</span><br></pre></td></tr></table></figure>
+
+<p>命令 选项 参数</p>
+<p>示例：li@Ubuntu22:~$ ls</p>
+<ul>
+<li>普通用户Shell指示符为$、root用户指示符为#</li>
+<li>command：命令名称，可以说系统自带的命令&#x2F;程序、我们写的程序、脚本文件</li>
+<li>options：命令选项，用于用于改变命令执行动作的类型，由“-“引导，可以同时带有多个选项，多个选项可以只有一个“-“来引导，如”cp -f -r”等价于“cp -rf ”。另外，有些命令或程序还支持由”—“引导的长选项，如”cp—force”等价于”cp -f”</li>
+<li>parameter：命令参数，指出命令作用的对象或目标，有的命令允许带有多个参数；</li>
+<li>命令、选项、参数之间一定要有一个或多个空白符（包括空格、Tab键等）；所有的命令、选项、参数是严格区分大小写的，这点与windows不同</li>
+</ul>
+<p>命令前若带空白符，则不会记录，无法通过上键查看历史输入记录</p>
 <h2 id="Linux软件安装"><a href="#Linux软件安装" class="headerlink" title="Linux软件安装"></a>Linux软件安装</h2><ul>
-<li>Linux下输入一条正确的命令时，如果默认没有安装该命令的话，我们可以使用  apt install 命令来进行安装，apt install 命令在安装时需要用户确认是否安装，我们可以加上 -y 选项默认选择是yes。</li>
+<li>Linux下输入一条正确的命令时，如果默认没有安装该命令的话，我们可以使用  apt-get install 命令来进行安装，apt install 命令在安装时需要用户确认是否安装，我们可以加上 -y 选项默认选择是yes。</li>
 <li>apt 在同一时刻只能有一个进程运行安装，如果已经有进程在进行安装了，那么就会出现被Lock的错误，直到另一个进程安装完成才能继续。</li>
 <li>Linux下的普通用户并不能安装软件，如果普通用户想使用root权限执行某条命令的话，可以在该命令前加上sudo，这样该命令就可以以root权限执行了。</li>
 <li>只有系统在安装时创建的用户具有sudo权限的，并不是所有新创建的用户默认都具有sudo权限的，如果需要sudo则需要root授权。</li>
 <li>root用户对系统具有最高管理权限，它可以对系统进行任意的修改（相当于Windows Administrator)，如安装软件，安装硬盘，修改系统配置，修改网络配置等所有涉及到系统修改的操作，都只有root才有权限。</li>
 </ul>
+<h3 id="apt-get命令"><a href="#apt-get命令" class="headerlink" title="apt-get命令"></a>apt-get命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">apt-cache search package 	#搜索软件包</span><br><span class="line">apt-cache show package 		#获取包的相关信息,如说明、大小、版本等</span><br><span class="line">sudo apt-get install package 	#安装包</span><br><span class="line">sudo apt-get install package --reinstal l 	#重新安装包</span><br><span class="line">sudo apt-get -f install 	#修复安装</span><br><span class="line">sudo apt-get remove package 	#删除包</span><br><span class="line">sudo apt-get remove package --purge 	#删除包, 包括配置文件等</span><br><span class="line">sudo apt-get update		#更新源</span><br><span class="line">sudo apt-get upgrade 	#更新已安装的包</span><br><span class="line">sudo apt-get dist-upgrade 	#升级系统</span><br><span class="line">apt-cache depends package 	#了解使用该包依赖那些包</span><br><span class="line">apt-cache rdepends package 	#查看该包被哪些包依赖</span><br><span class="line">sudo apt-get build-dep package 	#安装相关的编译环境</span><br><span class="line">apt-get source package 		#下载该包的源代码</span><br><span class="line">sudo apt-get clean &amp;&amp; sudo apt-get autoclean 	#清理无用的包</span><br><span class="line">sudo apt-get check 		#检查是否有损坏的依赖</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">apt-get 修改源配置文件。 /etc/apt/sources list</span></span><br><span class="line">li@ubuntu22:~$ sudo apt-get install tree</span><br><span class="line">li@ubuntu22:~$ sudo apt-get remove tree</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="dpkg命令"><a href="#dpkg命令" class="headerlink" title="dpkg命令"></a>dpkg命令</h3><p>deb包安装命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dpkg -i &lt;package. deb&gt; 	#安装一个 Debian软件包，如你手动下载的文件。</span><br><span class="line">dpkg -c &lt;package. deb&gt;  	#列出 &lt;package. deb&gt;的内容。</span><br><span class="line">dpkg -I &lt;package. deb&gt;  	#从 &lt;package. deb&gt; 中提取包裹信息。</span><br><span class="line">dpkg -r &lt;package&gt;  		#移除一个已安装的包裹。</span><br><span class="line">dpkg -P &lt;package&gt; 	 	#完全清除一个已安装的包裹。和 remove 不同的是。remove 只是删掉数据和可执行文件， purge 另外还删除所有的配制文件。</span><br><span class="line">dpkg -L &lt;package&gt; 	 	#列出&lt;package&gt; 安装的所有文件清单。同时请看dpkg -c 来检查一个 . deb 文件的内容。</span><br><span class="line">dpkg -s &lt;package&gt; 	 	#显示已安装包裹的信息。同时请看 apt-cache显示 Debian 存档中的包裹信息，以及 dpkg -I 来显示从一个. deb 文件中提取的包裹信息。</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Shell脚本和常见服务"><a href="#Shell脚本和常见服务" class="headerlink" title="Shell脚本和常见服务"></a>Shell脚本和常见服务</h2><h3 id="Shell实例和执行"><a href="#Shell实例和执行" class="headerlink" title="Shell实例和执行"></a>Shell实例和执行</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">li@ubuntu:~$ vim hello.sh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">str=&quot;Hello World&quot;</span><br><span class="line">echo $str</span><br><span class="line"></span><br><span class="line">var1=5</span><br><span class="line">var2=6</span><br><span class="line"></span><br><span class="line">sum=$var1+$var2</span><br><span class="line">echo $sum</span><br><span class="line"></span><br><span class="line">total=` expr $var1 + $var2`</span><br><span class="line">echa $total</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">li@ubuntu:~$ bash hello.sh</span><br><span class="line">Hello World</span><br><span class="line">li@ubuntu:~$ ./hello.sh</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Shell判断"><a href="#Shell判断" class="headerlink" title="Shell判断"></a>Shell判断</h3><p>1、字符串判断</p>
+<ul>
+<li>str1&#x3D;str2		当两个串有相同内容时为真，＝两边加空格：比较，不加：赋值</li>
+<li>str1 !&#x3D; str2	 当串str1和str2不等时为真</li>
+<li>-n str1			 当串的长度大于0时为真（串非空）</li>
+<li>-z str1			  当串的长度为0时为真（空串）</li>
+<li>str1				  当串str1为非空时为真</li>
+</ul>
+<p>2、数字判断</p>
+<ul>
+<li>int1 -eq int2			两数相等为真</li>
+<li>int1-ne int2			 两数不等为真</li>
+<li>int1-gt int2			  int1大于int2为真</li>
+<li>int1 -ge int2			int1大于等于int2为真</li>
+<li>int1 -lt int2			  int1小于int2为真</li>
+<li>int1 -le int2			 int1小于等于int2为真</li>
+</ul>
+<p>3、文件的判断</p>
+<ul>
+<li><p>-r file			用户可读为真</p>
+</li>
+<li><p>-w file		  用户可写为真</p>
+</li>
+<li><p>-x file		   用户可执行为真</p>
+</li>
+<li><p>-f file		   文件为正规文件为真</p>
+</li>
+<li><p>-d file		  文件为目录为真</p>
+</li>
+<li><p>-c file		   文件为字符设备文件为真</p>
+</li>
+<li><p>-b file		  文件为块设备文件为真</p>
+</li>
+<li><p>-s file		   文件大小非0时为真</p>
+</li>
+</ul>
+<p>4、复杂逻辑判断</p>
+<ul>
+<li>-a		与</li>
+<li>-o		或</li>
+<li>!		  非</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">dist=`lsb_release -i | cut -d: -f2 | sed &#x27;s/^[ \t]*//g&#x27;`</span><br><span class="line">echo $dist</span><br><span class="line"></span><br><span class="line">if [ $dist = &quot;Ubuntu&quot; ] ;then		#[]两边一定要加空格</span><br><span class="line">        echo &quot;sudo apt-get install tree&quot;</span><br><span class="line">        cmd=apt-get</span><br><span class="line">elif [ $dist = &quot;CentOS&quot; ] ;then</span><br><span class="line">        echo &quot;sudo yun install tree&quot;</span><br><span class="line">        cmd=yum</span><br><span class="line">else</span><br><span class="line">        echo &quot;Unknow Linux system&quot;</span><br><span class="line">fi			#反着写相当于代码块</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="sed命令"><a href="#sed命令" class="headerlink" title="sed命令"></a>sed命令</h3><ul>
+<li>sed ‘s&#x2F;^[ \t]&#x2F;&#x2F;g:把空格和tab删掉</li>
+<li>s:开始替换</li>
+<li>&#x2F;a&#x2F;b&#x2F;：把a替换成b，&#x2F;是分隔符</li>
+<li>g：全局，所有都替换</li>
+<li>^：从行首开始</li>
+<li>[]：匹配什么 [ \t]匹配空格和tab</li>
+<li>&#x2F;&#x2F;a&#x2F;g:替换成a</li>
+</ul>
+<h3 id="switch-case"><a href="#switch-case" class="headerlink" title="switch&#x2F;case"></a>switch&#x2F;case</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">SYSTEM=`<span class="built_in">uname</span> -s`</span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="variable">$SYSTEM</span> <span class="keyword">in</span></span><br><span class="line">	Linux)</span><br><span class="line">		<span class="built_in">echo</span> <span class="string">&quot;Linux System&quot;</span></span><br><span class="line">		..</span><br><span class="line">		,,</span><br><span class="line">	FreeBSD)</span><br><span class="line">		<span class="built_in">echo</span> <span class="string">&quot;FreeBSD System&quot;</span></span><br><span class="line">		..</span><br><span class="line">		,,</span><br><span class="line">	Solaris)</span><br><span class="line">		<span class="built_in">echo</span> <span class="string">&quot;Solaris System&quot;</span></span><br><span class="line">		..</span><br><span class="line">		,,</span><br><span class="line">	*)</span><br><span class="line">		<span class="built_in">echo</span> <span class="string">&quot;Unknow System&quot;</span></span><br><span class="line">		..</span><br><span class="line">		,,		</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Shell循环"><a href="#Shell循环" class="headerlink" title="Shell循环"></a>Shell循环</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">echo &quot;Use for list 1~10&quot;</span><br><span class="line">for i in `seq 1 10`;do</span><br><span class="line">	echo $i</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">echo &quot;List file in current folder:&quot;</span><br><span class="line">for file in `ls`;</span><br><span class="line">do</span><br><span class="line">	echo $file</span><br><span class="line">done</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">echo &quot;Use while list 1~10&quot;</span><br><span class="line">min=1</span><br><span class="line">max=10</span><br><span class="line"><span class="meta prompt_">while[$</span><span class="language-bash">min -le <span class="variable">$max</span>]</span></span><br><span class="line">do</span><br><span class="line">	echo $min</span><br><span class="line">	min=`expr $min + 1`</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="修改Shell配置"><a href="#修改Shell配置" class="headerlink" title="修改Shell配置"></a>修改Shell配置</h2><p>ubuntu:</p>
+<ol>
+<li>vim ~&#x2F;.bashrc 修改文件</li>
+<li>source ~&#x2F;.bashrc 让修改内容生效(也可以使用. ~&#x2F;.bashrc生效)</li>
+</ol>
+<p>CentOS:</p>
+<p>​	修改.bash_profile 文件</p>
+<p>在输入一条Linux命令的时候，会出现错误”command not fount”:</p>
+<p>li@ubuntu22:~$ hello<br>bash: hello: command not found</p>
+<p>解决方法：</p>
+<ol>
+<li>检查该命令是否拼写正确或者命令、选项、参数之间的空格</li>
+<li>把该程序拷贝到PATH环境变量指定的某个路径下</li>
+<li>把该程序所在的路径加入到PATH环境变量中去：export PATH&#x3D;$PATH:路径</li>
+</ol>
 <h2 id="修改源"><a href="#修改源" class="headerlink" title="修改源"></a>修改源</h2><ol>
 <li>换源加快下载速度<br>查看版本信息: lsb_release -a 查看版本号(release)代号(codename)</li>
 <li>备份sources.list文件</li>
@@ -196,19 +336,14 @@
 <li>apt clean	删除以已经安装过的软件安装包，自动将&#x2F;var&#x2F;cache&#x2F;apt&#x2F;archives&#x2F;下的所有deb删掉，相当于清理下载的软件安装包</li>
 </ul>
 <h2 id="文件上传下载"><a href="#文件上传下载" class="headerlink" title="文件上传下载"></a>文件上传下载</h2><p>sudo apt install -y lrzsz命令安装lrsz软件包</p>
-<p>sz吧Linux下的文件传入windows下，rz把windows下的文件传入Linux</p>
-<h2 id="修改Shell配置"><a href="#修改Shell配置" class="headerlink" title="修改Shell配置"></a>修改Shell配置</h2><p>ubuntu:</p>
-<ol>
-<li>vim ~&#x2F;.bashrc 修改文件</li>
-<li>source ~&#x2F;.bashrc 让修改内容生效(也可以使用. ~&#x2F;.bashrc生效)</li>
-</ol>
-<p>CentOS:</p>
-<p>​	修改.bash_profile 文件</p>
+<p>sz把Linux下的文件传入windows下，rz把windows下的文件传入Linux</p>
 <h2 id="动态链接库和静态链接库"><a href="#动态链接库和静态链接库" class="headerlink" title="动态链接库和静态链接库"></a>动态链接库和静态链接库</h2><p>动态库：</p>
 <p>所有共用的代码都放在一个.so（windows下是.dll）文件中，程序在运行时再将其加载到内存的相应空间中</p>
 <p>静态库：</p>
 <p>将静态库的代码都放在可执行文件中，在运行时不再需要库文件了（.a）</p>
-<h2 id="ls命令"><a href="#ls命令" class="headerlink" title="ls命令"></a>ls命令</h2><ul>
+<h2 id="ls命令"><a href="#ls命令" class="headerlink" title="ls命令"></a>ls命令</h2><p>列出当前文件夹下的文件</p>
+<p>ls -la&#x2F;usr&#x2F;local</p>
+<ul>
 <li>-a 显示所有文件及目录 (<strong>.</strong> 开头的隐藏文件也会列出)</li>
 <li>-d 只列出目录（不递归列出目录内的文件）。</li>
 <li>-l 以长格式显示文件和目录信息，包括权限、所有者、大小、创建时间等。</li>
@@ -228,12 +363,16 @@
 </ul>
 <h2 id="mkdir命令"><a href="#mkdir命令" class="headerlink" title="mkdir命令"></a>mkdir命令</h2><p>创建目录命令</p>
 <p>-p 可以批量创建指定的层级文件夹</p>
-<p>例mkdir -p d1&#x2F;d2&#x2F;d3&#x2F;d4</p>
-<h2 id="touch命令"><a href="#touch命令" class="headerlink" title="touch命令"></a>touch命令</h2><p>用于修改文件或者目录的时间属性，包括存取时间和更改时间。若文件不存在，系统会建立一个新的文件。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir folder	#创建一个folder文件夹</span><br><span class="line">mkdir dir1 dir2 dir3	#创建3个文件夹</span><br><span class="line">mkdir -p dir/dir1/dir2	#在dir/dir1下创建dir2,没有dir1就创建dir1</span><br><span class="line">mkdir -p test/&#123;test1,test2&#123;test3,test4&#125;&#125;	#test下有test1和test2,test2下有test3和test4</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="touch命令"><a href="#touch命令" class="headerlink" title="touch命令"></a>touch命令</h2><p>文件不存在则创建文件，存在则修改时间</p>
 <h2 id="cp命令"><a href="#cp命令" class="headerlink" title="cp命令"></a>cp命令</h2><p>复制文件或目录命令</p>
 <ul>
 <li>-a：此选项通常在复制目录时使用，它保留链接、文件属性，并复制目录下的所有内容。其作用等于 dpR 参数组合。</li>
 <li>-d：复制时保留链接。这里所说的链接相当于 Windows 系统中的快捷方式。</li>
+<li>-r：用于复制目录及其所有的子目录和文件，如果要复制目录，需要使用该选项。</li>
 </ul>
 <h2 id="mv命令"><a href="#mv命令" class="headerlink" title="mv命令"></a>mv命令</h2><p>为文件或目录改名、或将文件或目录移入其它位置</p>
 <ul>
@@ -272,6 +411,11 @@
 <li>-r 将目录及以下之档案亦逐一删除</li>
 </ul>
 <h2 id="pwd命令"><a href="#pwd命令" class="headerlink" title="pwd命令"></a>pwd命令</h2><p>打印当前路径</p>
+<h2 id="echo命令"><a href="#echo命令" class="headerlink" title="echo命令"></a>echo命令</h2><p>打印变量</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">li@ubuntu22:~$ echo &quot;hello world&quot;</span><br><span class="line">hello world</span><br><span class="line">li@ubuntu22:~$ echo -n &quot;hello world&quot;</span><br><span class="line">hello worldli@ubuntu22:~$ echo $PATH</span><br><span class="line">/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="命令置换符"><a href="#命令置换符" class="headerlink" title="命令置换符"></a>命令置换符</h2><p>​		可以将一个命令执行的结果保存到一个变量中</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">li@ubuntu:~$ cd /usr/local/src/</span><br><span class="line">li@ubuntu:/usr/local/src/$ ls</span><br><span class="line">li@ubuntu:/usr/local/src/$</span><br><span class="line">li@ubuntu:/usr/local/src/$ export PROJ_PATH=`pwd`</span><br><span class="line">li@ubuntu:/usr/local/src/$</span><br><span class="line">li@ubuntu:/usr/local/src/$ cd</span><br><span class="line">li@ubuntu:~$ echo $PROJ_PATH</span><br><span class="line">/usr/local/src/</span><br><span class="line">li@ubuntu:~$ </span><br></pre></td></tr></table></figure>
 
@@ -294,14 +438,14 @@
 
 
 <h2 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h2><p>​		Linux是支持多进程运行的分时操作系统，在操作系统启动时Linux内核会创建一个特殊进程–init进程，它会创建并启动所有其他要求在系统启动时自动运行的服务进程。这是由Linux内核创建并以root权限运行，所以并不能被杀死（root也不可以）。这是系统的第一个进程，进程号永远为1。</p>
-<h3 id="进程查询"><a href="#进程查询" class="headerlink" title="进程查询"></a>进程查询</h3><ul>
+<h3 id="进程查询-ps命令"><a href="#进程查询-ps命令" class="headerlink" title="进程查询 ps命令"></a>进程查询 ps命令</h3><ul>
 <li>ps	查看当前Shell下正在执行的进程</li>
 <li>ps aux	查看当前系统所有正在运行的进程</li>
 <li>ps aux | grep sshd | grep -v grep	查看SSH服务进程</li>
 <li>ps aux | grep li | grep -v grep	查看用户正在运行的进程</li>
 <li>ps aux | grep init | grep -v grep | awk ‘{print $2}’	查看init进程的进程号</li>
 </ul>
-<h3 id="进程终止"><a href="#进程终止" class="headerlink" title="进程终止"></a>进程终止</h3><p>​		kill或killall命令终止进程的运行</p>
+<h3 id="进程终止-kill命令"><a href="#进程终止-kill命令" class="headerlink" title="进程终止 kill命令"></a>进程终止 kill命令</h3><p>​		kill或killall命令终止进程的运行</p>
 <ul>
 <li>kill	用进程号终止进程</li>
 <li>killall	用进程名来终止进程，注意需要sudo权限</li>
@@ -313,6 +457,10 @@
 <p>kill或killall命令发送的是SIGTERM（15）信号</p>
 <p>SIGKILL（9）是强制终止的信号，kill -9 进程号   或  kill -SIGKILL 进程号</p>
 <p>SIGSEGV（11） 发生指针异常时操作系统发送该信号</p>
+<h2 id="查看系统资源"><a href="#查看系统资源" class="headerlink" title="查看系统资源"></a>查看系统资源</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/cpuinfo	#查看CPU信号等信息</span><br><span class="line">cat /proc/meminfo	#查看内存信息</span><br><span class="line">free	#查看内存使用情况</span><br><span class="line">df -h	#查看磁盘等存储信息</span><br><span class="line">top		#实时显示CPU、内存、进程等信息</span><br><span class="line">uptime	#查看Linex运行了多长时间</span><br><span class="line">who		#查看哪些用户登录到了Linux系统上</span><br><span class="line">lsb_release -a		#查看Linux发行版本，centos需安装redhat-lsb软件包查看Linux内核版本</span><br><span class="line">uname -a	#查看Linux内核版本等信息</span><br><span class="line">sudo sysv-rc-conf		#Ubuntu系列设置随机启动的服务</span><br><span class="line">sudo ntsysv		#centos系列设置随机启动的服务</span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="nano编辑器"><a href="#nano编辑器" class="headerlink" title="nano编辑器"></a>nano编辑器</h2><p>相当于一个小型的记事本</p>
 <p>用法：nano hello.c	创建一个hello.c文件</p>
 <h2 id="文件内容查看命令"><a href="#文件内容查看命令" class="headerlink" title="文件内容查看命令"></a>文件内容查看命令</h2><h3 id="cat命令"><a href="#cat命令" class="headerlink" title="cat命令"></a>cat命令</h3><p>可以把文件所有内容显示在屏幕上，适合文件内容较少时使用</p>
@@ -324,6 +472,8 @@
 <p><img src="C:\Users\asus\blog\source\assets\img\image-20230914215046162.png" alt="image-20230914215046162"></p>
 <p><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2023/09/15/9de8ac685ded6b6f.png">https://s3.bmp.ovh/imgs/2023/09/15/9de8ac685ded6b6f.png</a></p>
 <p><img src="C:\Users\asus\blog\source\assets\img\image-20230914221542991.png" alt="image-20230914221542991"></p>
+<h2 id="ln命令"><a href="#ln命令" class="headerlink" title="ln命令"></a>ln命令</h2><p>创建链接文件</p>
+<p>链接包括硬链接和符号链接（软连接）。软连接可以看作是Windows中的快捷方式，可以快速链接到目标档案或目录。</p>
 <h2 id="basename和dirname命令"><a href="#basename和dirname命令" class="headerlink" title="basename和dirname命令"></a>basename和dirname命令</h2><p>basename命令：获取路径名的文件名部分</p>
 <p>dirname命令：获取路径名的目录部分</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">li@ubuntu22:~$ <span class="built_in">basename</span> /usr/local/src/</span><br><span class="line">src</span><br><span class="line">li@ubuntu22:~$ <span class="built_in">dirname</span> /usr/local/src/</span><br><span class="line">/usr/local</span><br></pre></td></tr></table></figure>
@@ -371,9 +521,11 @@
 
 
 
-
-
-<h2 id="find命令"><a href="#find命令" class="headerlink" title="find命令"></a>find命令</h2><ul>
+<h2 id="文件查找"><a href="#文件查找" class="headerlink" title="文件查找"></a>文件查找</h2><h3 id="locate命令"><a href="#locate命令" class="headerlink" title="locate命令"></a>locate命令</h3><p>从系统的数据库中查找文件</p>
+<p>locate 与 find 不同: find 是去硬盘找，locate 只在 &#x2F;var&#x2F;lib&#x2F;slocate 资料库中找。</p>
+<p>locate 的速度比 find 快，它并不是真的查找，而是查数据库，一般文件数据库在 &#x2F;var&#x2F;lib&#x2F;slocate&#x2F;slocate.db 中，所以 locate 的查找并不是实时的，而是以数据库的更新为准，一般是系统自己维护，也可以手工升级数据库 ，命令为：</p>
+<p>updatedb</p>
+<h3 id="find命令"><a href="#find命令" class="headerlink" title="find命令"></a>find命令</h3><ul>
 <li>作用：可以根据不同的条件来查找文件，如权限、拥有者、修改日期、文件大小等。<br>格式：find [path] [option] [expression]<br>注意：若没有指定路径，则在当前路径下查找<br> find ~ -name “hello.c” 在主目录及其子目录下找出所有的hello.c文件</li>
 <li>find -name “.txt” 在当前路径及其所有子目录下找出所有的 .txt 文件 提示：双引号记得加，否则子目录下的文件不一定能搜出来</li>
 <li>find -name “*.txt” -o “*.c” 在当前路径及其所有子目录下找出所有的 .txt 文件和 .c 文件</li>
@@ -398,9 +550,133 @@
 
 <h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><p>从大量文本中匹配出符合条件的行</p>
 <p>基本表达式：</p>
-<p><img src="C:\Users\asus\blog\source\assets\img\image-20230915174829586.png" alt="image-20230915174829586"></p>
+<table>
+<thead>
+<tr>
+<th align="center">字符</th>
+<th align="center">含义</th>
+<th align="center">实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">^</td>
+<td align="center">匹配行首</td>
+<td align="center">^abc：匹配以abc开头的字符</td>
+</tr>
+<tr>
+<td align="center">$</td>
+<td align="center">匹配行尾</td>
+<td align="center">abc$：匹配以abc结尾的字符</td>
+</tr>
+<tr>
+<td align="center">^$</td>
+<td align="center">空行</td>
+<td align="center">表示空行</td>
+</tr>
+<tr>
+<td align="center">.</td>
+<td align="center">匹配任意单个字符</td>
+<td align="center">.a：匹配任意和a结合的两个字符，其中必须是在后面</td>
+</tr>
+<tr>
+<td align="center">*</td>
+<td align="center">匹配0或多个此字符</td>
+<td align="center">*a：匹配任意一个或多个含有a的字符</td>
+</tr>
+<tr>
+<td align="center">.*</td>
+<td align="center">代表任意多个字符</td>
+<td align="center">就是代表任意多个字符</td>
+</tr>
+<tr>
+<td align="center">\</td>
+<td align="center">屏蔽一个元字符的特殊含义</td>
+<td align="center">表示去掉有意义的元字符的含义</td>
+</tr>
+<tr>
+<td align="center">[]</td>
+<td align="center">匹配括号内的字符</td>
+<td align="center">[abc]：代表匹配a或b或c</td>
+</tr>
+<tr>
+<td align="center">[^abc]</td>
+<td align="center">匹配不包括括号内的任意字符</td>
+<td align="center">[^abc]：代表不接受abc字符集合</td>
+</tr>
+</tbody></table>
 <p>扩展正则表达式（使用rgrep命令查找）</p>
-<p><img src="C:\Users\asus\blog\source\assets\img\image-20230915174943354.png" alt="image-20230915174943354"></p>
+<table>
+<thead>
+<tr>
+<th align="center">字符</th>
+<th align="center">含义</th>
+<th align="center">实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">+</td>
+<td align="center">重复前一个字符一次或多次</td>
+<td align="center">a+：匹配包含一个a或多个a的字符</td>
+</tr>
+<tr>
+<td align="center">？</td>
+<td align="center">重复前一个字符0次或一次</td>
+<td align="center">a？：匹配包含0个a或一个a的字符</td>
+</tr>
+<tr>
+<td align="center">|</td>
+<td align="center">同时匹配|两边的字符</td>
+<td align="center">“abc|bcd”：匹配包含abc或bcd的字符</td>
+</tr>
+<tr>
+<td align="center">（）</td>
+<td align="center">可以和（）的字符分组匹配</td>
+<td align="center">“abc(d \ |e \ |f)”：匹配包含abcd,abce,abcf的字符</td>
+</tr>
+<tr>
+<td align="center">{}</td>
+<td align="center">匹配前面字符的次数</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">{n}</td>
+<td align="center"></td>
+<td align="center">“abc{2}”：至少匹配abc两次</td>
+</tr>
+<tr>
+<td align="center">{n,m}</td>
+<td align="center"></td>
+<td align="center">“abc{2,5}”：匹配abc两到五次</td>
+</tr>
+</tbody></table>
+<h2 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h2><table>
+<thead>
+<tr>
+<th align="center">通配符</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">*</td>
+<td align="center">匹配任意长度的任意字符串，file*.txt</td>
+</tr>
+<tr>
+<td align="center">?</td>
+<td align="center">匹配一个长度的任意字符，file?.txt</td>
+</tr>
+<tr>
+<td align="center">[…]</td>
+<td align="center">匹配其中指定的一个字符，file[az].txt</td>
+</tr>
+<tr>
+<td align="center">[-]</td>
+<td align="center">匹配一个指定的范围，file[a-z].txt</td>
+</tr>
+<tr>
+<td align="center">[^…]</td>
+<td align="center">除了其中指定的字符，均可匹配，file[ ^ ab].txt</td>
+</tr>
+</tbody></table>
 <h2 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h2><p>| 管道符</p>
 <p>把一个命令的输出作为下一个命令的输入，也就是说，在两个命令中设置管道时，管道符左边的命令的输出就变成了右边命令的输入。</p>
 <p>cmd1|cmd2|cmd3</p>
@@ -424,7 +700,7 @@
 <h3 id="把用户添加到组中"><a href="#把用户添加到组中" class="headerlink" title="把用户添加到组中"></a>把用户添加到组中</h3><p>sudo gpasswd -M test group 把test这个用户添加到group这个组中</p>
 <h3 id="把用户从组中移除"><a href="#把用户从组中移除" class="headerlink" title="把用户从组中移除"></a>把用户从组中移除</h3><p>sudo gpasswd -d test gr</p>
 <h3 id="更改组名"><a href="#更改组名" class="headerlink" title="更改组名"></a>更改组名</h3><p>sudo groupmod -n group2 group</p>
-<h3 id="设置密码"><a href="#设置密码" class="headerlink" title="设置密码"></a>设置密码</h3><p>sudo passwd 用户</p>
+<h3 id="设置密码-passwd"><a href="#设置密码-passwd" class="headerlink" title="设置密码 passwd"></a>设置密码 passwd</h3><p>sudo passwd 用户</p>
 <h2 id="sudo权限"><a href="#sudo权限" class="headerlink" title="sudo权限"></a>sudo权限</h2><p>sudo命令的使用方法：</p>
 <p>sudo [ ] [ 新使用者账号]</p>
 <ul>
@@ -470,6 +746,10 @@
 <p>事实上，我们可以使用chown命令同时修改用户和组、chown命令加上-R选项可以将文件夹下的子目录所有全部改变</p>
 <p>sudo chown root.root hello—–把hello的所有者和所属组都改为root</p>
 <p>sudo chown root.root -R hello</p>
+<h2 id="命令查找"><a href="#命令查找" class="headerlink" title="命令查找"></a>命令查找</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">li@ubuntu22:~$ whereis vim</span><br><span class="line">vim: /usr/bin/vim /etc/vim /usr/share/vim /usr/share/man/man1/vim.1.gz</span><br><span class="line">li@ubuntu22:~$ which vim</span><br><span class="line">/usr/bin/vim</span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="粘贴位（sticky"><a href="#粘贴位（sticky" class="headerlink" title="粘贴位（sticky)"></a>粘贴位（sticky)</h2><p>​	我们知道Linux的账户信息保存在&#x2F;etc&#x2F;passwd文件中，密码信息保存在&#x2F;etc&#x2F;shadow文件中，对于普通用户而言，passwd只读，shadow文件既不可读也不可写，那么我么要如何修改呢？</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">li@ubuntu22:~$ ls -l /usr/bin/passwd</span><br><span class="line">-rwsr-xr-x 1 root root 59976 11月 24  2022 /usr/bin/passwd</span><br></pre></td></tr></table></figure>
 
@@ -516,7 +796,14 @@
 <li>因为一个机器上可能会有多个硬盘，这样多个硬盘时按a,b,c,d……依次编号，所以第一个IDE硬盘叫hda,而第二个SATA硬盘sdb</li>
 <li>一个硬盘上可以有多个分区，其中主分区从1~4编号，而逻辑分区从5开始编号，这样第一个SATA硬盘的主分区叫sda1,第一个逻辑分区叫sda5</li>
 </ul>
-<h3 id="添加硬盘"><a href="#添加硬盘" class="headerlink" title="添加硬盘"></a>添加硬盘</h3><h3 id="创建分区"><a href="#创建分区" class="headerlink" title="创建分区"></a>创建分区</h3><p>sudo fdisk &#x2F;dev&#x2F;sdb</p>
+<h3 id="du与df命令"><a href="#du与df命令" class="headerlink" title="du与df命令"></a>du与df命令</h3><p>du命令：查看文件所占的存储空间的大小（并不是文件的实际大小，ls -l）</p>
+<p>df命令：查看整个系统中各个磁盘分区的使用情况</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">li@ubuntu22:~$ du -h hello.c</span><br><span class="line">4.0K	hello.c</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="添加硬盘"><a href="#添加硬盘" class="headerlink" title="添加硬盘"></a>添加硬盘</h3><p>1、关闭虚拟机。<br>2、选择虚拟机-&gt;设置-&gt;存储-&gt;控制器：SATA-&gt;添加虚拟硬盘-&gt;选择文件位置和大小。<br>3、选中新添加的硬盘，点击选择。<br><a target="_blank" rel="noopener" href="https://www.fujieace.com/virtualbox/add-virtual-hard-disk.html">https://www.fujieace.com/virtualbox/add-virtual-hard-disk.html</a></p>
+<h3 id="创建分区"><a href="#创建分区" class="headerlink" title="创建分区"></a>创建分区</h3><p>sudo fdisk &#x2F;dev&#x2F;sdb</p>
 <h4 id="fdisk分区"><a href="#fdisk分区" class="headerlink" title="fdisk分区"></a>fdisk分区</h4><p>对于fdisk常用的选项有：</p>
 <ul>
 <li>m:打印帮助信息</li>
@@ -569,6 +856,8 @@
 <li>&#x2F;dev&#x2F;sr0	光驱的设备文件</li>
 <li>&#x2F;media&#x2F;cdrom	光驱的挂载点</li>
 </ul>
+<p>virtualbox实现主机与虚拟机共享文件：	</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/piaopiaopiaopiaopiao/article/details/104200746">https://blog.csdn.net/piaopiaopiaopiaopiao/article/details/104200746</a></p>
 <h2 id="网络管理"><a href="#网络管理" class="headerlink" title="网络管理"></a>网络管理</h2><h3 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h3><p>ip地址&#x3D;网络地址（网络号）+主机地址（主机号）</p>
 <p>​		ip地址采用点分十进制的形式表示,可以分为公有IP地址，私有IP地址，特殊ip地址。</p>
 <p>​		公有ip地址现在由ICANN统一负责管理，这些地址分配给向ICANN提出申请的组织机构，公有IP在Internet上任何地方都可以直接访问。这也就意味着如果我们想做一个网站让Internet上的其他主机能够访问的话，就必须要有一个公网IP地址。</p>
@@ -603,6 +892,7 @@
 <p>​	因为路由器的默认Ip地址是192.168.0.1是C类地址，所有子网掩码也一般是默认255.255.255.0了</p>
 <p>​	子网掩码并不能单独存在，它必须结合Ip地址一起使用，另外，子网掩码设定的规则是从高位到低位必须是连续的1，如255.0.0.0,即为11111111 00000000 00000000 00000000，255.255.0.0,为11111111 11111111 00000000 00000000。有时候，子网掩码也会这样表示：192.168.1.1&#x2F;24，这就意味着该IP地址的子网掩码是连续24个1</p>
 <p>​	那么子网掩码又是如何划分网络号和主机号的呢？这个过程其实就是用IP地址与子网掩码做按位的与运算，这样得到的就是网络号，那么剩下的部分就是主机号。</p>
+<p><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2023/09/22/c86ec0c0cdd04309.png">https://s3.bmp.ovh/imgs/2023/09/22/c86ec0c0cdd04309.png</a></p>
 <p><img src="C:\Users\asus\blog\source\assets\img\image-20230917155944943.png" alt="image-20230917155944943"></p>
 <p>​	所以该IP地址：192.168.10.3的网络号是192.168.10.0，主机号是0.0.0.3。需要注意的是，主机号全0的为网络号，主机号全1则是广播地址，如192.168.10.255，就是该网络的广播地址。</p>
 <p>另外，两台机器上能互相通信的充分条件是：</p>
@@ -624,8 +914,8 @@
 <h3 id="ifconfig命令"><a href="#ifconfig命令" class="headerlink" title="ifconfig命令"></a>ifconfig命令</h3><p>查看&#x2F;使能&#x2F;禁用网卡、修改IP、MAC地址、子网掩码等，但修改只是临时生效</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ifconfig	#查看所有已使能的网卡，禁用的网卡看不到</span><br><span class="line">ifconfig -a		#查看所有网卡</span><br><span class="line"></span><br><span class="line">sudo ifconfig enp0s3 up		#使能相应网卡</span><br><span class="line">sudo ifconfig enp0s3 down		#禁用网卡</span><br><span class="line"></span><br><span class="line">sudo ifconfig enp0s3 192.168.50.119		#设置IP地址并使用默认子网掩码</span><br><span class="line">sudo ifconfig enp0s3 192.168.50.119 netmask 255.255.255.0		#设置IP地址和子网掩码</span><br><span class="line">sudo ifconfig enp0s3:1 192.168.50.119	#一张网卡绑定多个IP</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">修改MAC地址必须先禁用网卡，修改完成后再使能</span></span><br><span class="line">sudo ifconfig enp0s3 down</span><br><span class="line">sudo ifconfig enp0s3 hw ether 00:0C:18:EF:FF:ED</span><br><span class="line">sudo ifconfig enp0s3 up</span><br></pre></td></tr></table></figure>
 
-
-
+<p>arp欺骗：</p>
+<p>对路由器arp表的欺骗和对内网PC的网关欺骗，是针对以太网地址解析协议（ARP）的一种攻击技术。</p>
 <h3 id="route命令"><a href="#route命令" class="headerlink" title="route命令"></a>route命令</h3><p>可以用来查看&#x2F;设置网关，但也是临时生效</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">route -n	#查看路由表</span><br><span class="line">sudo route del default		#删除默认网关</span><br><span class="line">sudo route add default gw 192.168.50.2		#添加默认网关</span><br></pre></td></tr></table></figure>
 
@@ -638,7 +928,8 @@
 
 
 
-<h3 id="ping命令"><a href="#ping命令" class="headerlink" title="ping命令"></a>ping命令</h3><p>​	这是Windows、Unix和Linux系统下的通用命令，它是TCP&#x2F;IP协议栈中ICMP协议的实现，该协议发送的控制消息并不传输用户数据，而是用来发送网络通不通、主机是否可达、路由是否可用等网络本身的消息。</p>
+<h3 id="ping命令"><a href="#ping命令" class="headerlink" title="ping命令"></a>ping命令</h3><p>网络测试命令，可以诊断网络连接情况</p>
+<p>​	这是Windows、Unix和Linux系统下的通用命令，它是TCP&#x2F;IP协议栈中ICMP协议的实现，该协议发送的控制消息并不传输用户数据，而是用来发送网络通不通、主机是否可达、路由是否可用等网络本身的消息。</p>
 <p>​	因此该命令常用来帮助我们分析和判断网络故障。</p>
 <ul>
 <li>-c：指定发送ping报文的次数，Windows下默认为4次，Linux下默认是一直ping下去</li>
@@ -651,6 +942,41 @@
 <li>先ping Internet上的某台主机看是否能ping通，如114.114.114.114或223.5.5.5，如果可以ping同但不能上网则检查DNS配置，否则进入下一步</li>
 <li>ping 默认网关IP地址（路由器LAN口IP地址），如果能ping通则说明本机到路由器通信不存在问题，接下来检查自己的网关是否配置正确，如果网关也是正确的，那就有可能是路由器联网出现故障，如宽带欠费、电信网络故障、路由器拨号失败或损坏等</li>
 <li>如果连路由器都ping不通，则检查本机的网络配置。如IP地址、子网掩码是否配置正确、网线是否正常等</li>
+</ol>
+<h3 id="netstat命令"><a href="#netstat命令" class="headerlink" title="netstat命令"></a>netstat命令</h3><p>网络监控命令。可以查看当前系统监听的服务和已经建立的服务，以及相应的端口、协议等信息。</p>
+<p>netstst  -[atunlp]</p>
+<ul>
+<li>-a或–all 显示所有的连接，服务监听，Socket资料。</li>
+<li>-t：tcp，列出tcp协议的服务</li>
+<li>-u：udp，列出udp协议的服务</li>
+<li>-n：port number，用端口号来显示</li>
+<li>-l：listening，列出当前监听服务</li>
+<li>-p：program，列出服务程序的PID</li>
+</ul>
+<h3 id="Linux防火墙："><a href="#Linux防火墙：" class="headerlink" title="Linux防火墙："></a>Linux防火墙：</h3><p><strong>ufw命令（Ubuntu下）：</strong></p>
+<ul>
+<li>-enable:防火墙打开 sudo ufw enable</li>
+<li>-disable:关闭</li>
+<li>-reload:重启</li>
+<li>-allow:打开想要的端口 sudo ufw allow 9000</li>
+<li>-status:查看本机端口使用情况</li>
+</ul>
+<h3 id="虚拟机网络设置"><a href="#虚拟机网络设置" class="headerlink" title="虚拟机网络设置"></a>虚拟机网络设置</h3><p><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2023/09/22/6cf2164adc18e164.png">https://s3.bmp.ovh/imgs/2023/09/22/6cf2164adc18e164.png</a></p>
+<p><img src="C:\Users\asus\blog\source\assets\img\image-20230922165754792.png" alt="image-20230922165754792"></p>
+<h2 id="操作系统原理"><a href="#操作系统原理" class="headerlink" title="操作系统原理"></a>操作系统原理</h2><p>操作系统的功能：</p>
+<ol>
+<li><p>进程管理</p>
+<p><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2023/09/22/0af73f49c2400bc9.png">https://s3.bmp.ovh/imgs/2023/09/22/0af73f49c2400bc9.png</a></p>
+<p><img src="C:\Users\asus\blog\source\assets\img\image-20230920163623169.png" alt="image-20230920163623169"></p>
+</li>
+<li><p>内存管理</p>
+</li>
+<li><p>设备管理</p>
+</li>
+<li><p>文件系统</p>
+</li>
+<li><p>网络通信</p>
+</li>
 </ol>
 
       
@@ -753,7 +1079,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text">Linux相关知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text">Linux目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="toc-number">1.2.</span> <span class="toc-text">Linux软件安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%BA%90"><span class="toc-number">1.3.</span> <span class="toc-text">修改源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%B8%E8%BD%BD%E8%BD%AF%E4%BB%B6"><span class="toc-number">1.4.</span> <span class="toc-text">卸载软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD"><span class="toc-number">1.5.</span> <span class="toc-text">文件上传下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9Shell%E9%85%8D%E7%BD%AE"><span class="toc-number">1.6.</span> <span class="toc-text">修改Shell配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93%E5%92%8C%E9%9D%99%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93"><span class="toc-number">1.7.</span> <span class="toc-text">动态链接库和静态链接库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ls%E5%91%BD%E4%BB%A4"><span class="toc-number">1.8.</span> <span class="toc-text">ls命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cd%E5%91%BD%E4%BB%A4"><span class="toc-number">1.9.</span> <span class="toc-text">cd命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mkdir%E5%91%BD%E4%BB%A4"><span class="toc-number">1.10.</span> <span class="toc-text">mkdir命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#touch%E5%91%BD%E4%BB%A4"><span class="toc-number">1.11.</span> <span class="toc-text">touch命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cp%E5%91%BD%E4%BB%A4"><span class="toc-number">1.12.</span> <span class="toc-text">cp命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mv%E5%91%BD%E4%BB%A4"><span class="toc-number">1.13.</span> <span class="toc-text">mv命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rm%E5%91%BD%E4%BB%A4"><span class="toc-number">1.14.</span> <span class="toc-text">rm命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pwd%E5%91%BD%E4%BB%A4"><span class="toc-number">1.15.</span> <span class="toc-text">pwd命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E7%BD%AE%E6%8D%A2%E7%AC%A6"><span class="toc-number">1.16.</span> <span class="toc-text">命令置换符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#alias%E5%91%BD%E4%BB%A4"><span class="toc-number">1.17.</span> <span class="toc-text">alias命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%86%E5%8F%B2%E5%91%BD%E4%BB%A4"><span class="toc-number">1.18.</span> <span class="toc-text">历史命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E5%8F%B0%E5%92%8C%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C"><span class="toc-number">1.19.</span> <span class="toc-text">前台和后台运行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="toc-number">1.20.</span> <span class="toc-text">进程管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.20.1.</span> <span class="toc-text">进程查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%BB%88%E6%AD%A2"><span class="toc-number">1.20.2.</span> <span class="toc-text">进程终止</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nano%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-number">1.21.</span> <span class="toc-text">nano编辑器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E6%9F%A5%E7%9C%8B%E5%91%BD%E4%BB%A4"><span class="toc-number">1.22.</span> <span class="toc-text">文件内容查看命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cat%E5%91%BD%E4%BB%A4"><span class="toc-number">1.22.1.</span> <span class="toc-text">cat命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#more%E5%91%BD%E4%BB%A4"><span class="toc-number">1.22.2.</span> <span class="toc-text">more命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#less%E5%91%BD%E4%BB%A4"><span class="toc-number">1.22.3.</span> <span class="toc-text">less命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#head%E5%91%BD%E4%BB%A4"><span class="toc-number">1.22.4.</span> <span class="toc-text">head命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tail%E5%91%BD%E4%BB%A4"><span class="toc-number">1.22.5.</span> <span class="toc-text">tail命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi-vim%E5%91%BD%E4%BB%A4"><span class="toc-number">1.23.</span> <span class="toc-text">vi&#x2F;vim命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#basename%E5%92%8Cdirname%E5%91%BD%E4%BB%A4"><span class="toc-number">1.24.</span> <span class="toc-text">basename和dirname命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#file%E5%91%BD%E4%BB%A4"><span class="toc-number">1.25.</span> <span class="toc-text">file命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dos2uinx%E5%92%8Cuinx2dos"><span class="toc-number">1.26.</span> <span class="toc-text">dos2uinx和uinx2dos</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#od%E5%91%BD%E4%BB%A4"><span class="toc-number">1.27.</span> <span class="toc-text">od命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%A7%A3%E5%8E%8B%E7%BC%A9"><span class="toc-number">1.28.</span> <span class="toc-text">压缩和解压缩</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F%E6%89%A7%E8%A1%8C"><span class="toc-number">1.29.</span> <span class="toc-text">命令是否成功执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E7%BB%AD%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="toc-number">1.30.</span> <span class="toc-text">连续命令执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E3%80%81%E8%BE%93%E5%87%BA%E3%80%81%E5%87%BA%E9%94%99"><span class="toc-number">1.31.</span> <span class="toc-text">标准输入、输出、出错</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E5%87%86%E9%87%8D%E5%AE%9A%E5%90%91"><span class="toc-number">1.32.</span> <span class="toc-text">标准重定向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#find%E5%91%BD%E4%BB%A4"><span class="toc-number">1.33.</span> <span class="toc-text">find命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#grep%E5%91%BD%E4%BB%A4"><span class="toc-number">1.34.</span> <span class="toc-text">grep命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.35.</span> <span class="toc-text">正则表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%A1%E9%81%93"><span class="toc-number">1.36.</span> <span class="toc-text">管道</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xargs%E3%80%81-exec"><span class="toc-number">1.37.</span> <span class="toc-text">xargs、-exec</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="toc-number">1.38.</span> <span class="toc-text">用户管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E8%B4%A6%E5%8F%B7"><span class="toc-number">1.38.1.</span> <span class="toc-text">添加账号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E8%B4%A6%E5%8F%B7"><span class="toc-number">1.38.2.</span> <span class="toc-text">删除账号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E7%BB%84"><span class="toc-number">1.38.3.</span> <span class="toc-text">添加组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%BB%E9%99%A4%E7%BB%84"><span class="toc-number">1.38.4.</span> <span class="toc-text">移除组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%8A%E7%94%A8%E6%88%B7%E6%B7%BB%E5%8A%A0%E5%88%B0%E7%BB%84%E4%B8%AD"><span class="toc-number">1.38.5.</span> <span class="toc-text">把用户添加到组中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%8A%E7%94%A8%E6%88%B7%E4%BB%8E%E7%BB%84%E4%B8%AD%E7%A7%BB%E9%99%A4"><span class="toc-number">1.38.6.</span> <span class="toc-text">把用户从组中移除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%94%B9%E7%BB%84%E5%90%8D"><span class="toc-number">1.38.7.</span> <span class="toc-text">更改组名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E5%AF%86%E7%A0%81"><span class="toc-number">1.38.8.</span> <span class="toc-text">设置密码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sudo%E6%9D%83%E9%99%90"><span class="toc-number">1.39.</span> <span class="toc-text">sudo权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sudo%E9%85%8D%E7%BD%AE"><span class="toc-number">1.40.</span> <span class="toc-text">sudo配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sudo-vim-etc-sudoers"><span class="toc-number">1.40.1.</span> <span class="toc-text">sudo vim &#x2F;etc&#x2F;sudoers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sudo-visudo"><span class="toc-number">1.40.2.</span> <span class="toc-text">sudo visudo</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ls-l%E5%90%84%E5%AD%97%E6%AE%B5%E5%90%AB%E4%B9%89"><span class="toc-number">1.41.</span> <span class="toc-text">ls -l各字段含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chmod%E5%91%BD%E4%BB%A4"><span class="toc-number">1.42.</span> <span class="toc-text">chmod命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chown%E3%80%81chgrp%E5%91%BD%E4%BB%A4"><span class="toc-number">1.43.</span> <span class="toc-text">chown、chgrp命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B2%98%E8%B4%B4%E4%BD%8D%EF%BC%88sticky"><span class="toc-number">1.44.</span> <span class="toc-text">粘贴位（sticky)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#umask%E5%91%BD%E4%BB%A4"><span class="toc-number">1.45.</span> <span class="toc-text">umask命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lsattr%E3%80%81chattr"><span class="toc-number">1.46.</span> <span class="toc-text">lsattr、chattr</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86"><span class="toc-number">1.47.</span> <span class="toc-text">磁盘管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E7%A1%AC%E7%9B%98"><span class="toc-number">1.47.1.</span> <span class="toc-text">添加硬盘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%88%86%E5%8C%BA"><span class="toc-number">1.47.2.</span> <span class="toc-text">创建分区</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#fdisk%E5%88%86%E5%8C%BA"><span class="toc-number">1.47.2.1.</span> <span class="toc-text">fdisk分区</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-number">1.47.3.</span> <span class="toc-text">格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%82%E8%BD%BD"><span class="toc-number">1.47.4.</span> <span class="toc-text">挂载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD"><span class="toc-number">1.47.5.</span> <span class="toc-text">开机自动挂载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#U%E7%9B%98%E3%80%81SD%E5%8D%A1%E6%8C%82%E8%BD%BD%E4%BD%BF%E7%94%A8"><span class="toc-number">1.47.6.</span> <span class="toc-text">U盘、SD卡挂载使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%89%E7%9B%98%E6%8C%82%E8%BD%BD%E4%BD%BF%E7%94%A8"><span class="toc-number">1.47.7.</span> <span class="toc-text">光盘挂载使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86"><span class="toc-number">1.48.</span> <span class="toc-text">网络管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IP%E5%9C%B0%E5%9D%80"><span class="toc-number">1.48.1.</span> <span class="toc-text">IP地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81"><span class="toc-number">1.48.2.</span> <span class="toc-text">子网掩码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E7%BD%91%E5%85%B3"><span class="toc-number">1.48.3.</span> <span class="toc-text">默认网关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DNS"><span class="toc-number">1.48.4.</span> <span class="toc-text">DNS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ifconfig%E5%91%BD%E4%BB%A4"><span class="toc-number">1.48.5.</span> <span class="toc-text">ifconfig命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#route%E5%91%BD%E4%BB%A4"><span class="toc-number">1.48.6.</span> <span class="toc-text">route命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ip%E5%91%BD%E4%BB%A4"><span class="toc-number">1.48.7.</span> <span class="toc-text">ip命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ping%E5%91%BD%E4%BB%A4"><span class="toc-number">1.48.8.</span> <span class="toc-text">ping命令</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text">Linux相关知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text">Linux目录结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux%E6%A0%B9%E7%9B%AE%E5%BD%95"><span class="toc-number">1.1.1.</span> <span class="toc-text">Linux根目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95"><span class="toc-number">1.1.2.</span> <span class="toc-text">文件和目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E5%BE%84"><span class="toc-number">1.1.3.</span> <span class="toc-text">路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.1.4.</span> <span class="toc-text">命令格式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="toc-number">1.2.</span> <span class="toc-text">Linux软件安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#apt-get%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.1.</span> <span class="toc-text">apt-get命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dpkg%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.2.</span> <span class="toc-text">dpkg命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Shell%E8%84%9A%E6%9C%AC%E5%92%8C%E5%B8%B8%E8%A7%81%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.3.</span> <span class="toc-text">Shell脚本和常见服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Shell%E5%AE%9E%E4%BE%8B%E5%92%8C%E6%89%A7%E8%A1%8C"><span class="toc-number">1.3.1.</span> <span class="toc-text">Shell实例和执行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Shell%E5%88%A4%E6%96%AD"><span class="toc-number">1.3.2.</span> <span class="toc-text">Shell判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sed%E5%91%BD%E4%BB%A4"><span class="toc-number">1.3.3.</span> <span class="toc-text">sed命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#switch-case"><span class="toc-number">1.3.4.</span> <span class="toc-text">switch&#x2F;case</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Shell%E5%BE%AA%E7%8E%AF"><span class="toc-number">1.3.5.</span> <span class="toc-text">Shell循环</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9Shell%E9%85%8D%E7%BD%AE"><span class="toc-number">1.4.</span> <span class="toc-text">修改Shell配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%BA%90"><span class="toc-number">1.5.</span> <span class="toc-text">修改源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%B8%E8%BD%BD%E8%BD%AF%E4%BB%B6"><span class="toc-number">1.6.</span> <span class="toc-text">卸载软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD"><span class="toc-number">1.7.</span> <span class="toc-text">文件上传下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93%E5%92%8C%E9%9D%99%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93"><span class="toc-number">1.8.</span> <span class="toc-text">动态链接库和静态链接库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ls%E5%91%BD%E4%BB%A4"><span class="toc-number">1.9.</span> <span class="toc-text">ls命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cd%E5%91%BD%E4%BB%A4"><span class="toc-number">1.10.</span> <span class="toc-text">cd命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mkdir%E5%91%BD%E4%BB%A4"><span class="toc-number">1.11.</span> <span class="toc-text">mkdir命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#touch%E5%91%BD%E4%BB%A4"><span class="toc-number">1.12.</span> <span class="toc-text">touch命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cp%E5%91%BD%E4%BB%A4"><span class="toc-number">1.13.</span> <span class="toc-text">cp命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mv%E5%91%BD%E4%BB%A4"><span class="toc-number">1.14.</span> <span class="toc-text">mv命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rm%E5%91%BD%E4%BB%A4"><span class="toc-number">1.15.</span> <span class="toc-text">rm命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pwd%E5%91%BD%E4%BB%A4"><span class="toc-number">1.16.</span> <span class="toc-text">pwd命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#echo%E5%91%BD%E4%BB%A4"><span class="toc-number">1.17.</span> <span class="toc-text">echo命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E7%BD%AE%E6%8D%A2%E7%AC%A6"><span class="toc-number">1.18.</span> <span class="toc-text">命令置换符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#alias%E5%91%BD%E4%BB%A4"><span class="toc-number">1.19.</span> <span class="toc-text">alias命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%86%E5%8F%B2%E5%91%BD%E4%BB%A4"><span class="toc-number">1.20.</span> <span class="toc-text">历史命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E5%8F%B0%E5%92%8C%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C"><span class="toc-number">1.21.</span> <span class="toc-text">前台和后台运行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="toc-number">1.22.</span> <span class="toc-text">进程管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E6%9F%A5%E8%AF%A2-ps%E5%91%BD%E4%BB%A4"><span class="toc-number">1.22.1.</span> <span class="toc-text">进程查询 ps命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%BB%88%E6%AD%A2-kill%E5%91%BD%E4%BB%A4"><span class="toc-number">1.22.2.</span> <span class="toc-text">进程终止 kill命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90"><span class="toc-number">1.23.</span> <span class="toc-text">查看系统资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nano%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-number">1.24.</span> <span class="toc-text">nano编辑器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E6%9F%A5%E7%9C%8B%E5%91%BD%E4%BB%A4"><span class="toc-number">1.25.</span> <span class="toc-text">文件内容查看命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cat%E5%91%BD%E4%BB%A4"><span class="toc-number">1.25.1.</span> <span class="toc-text">cat命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#more%E5%91%BD%E4%BB%A4"><span class="toc-number">1.25.2.</span> <span class="toc-text">more命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#less%E5%91%BD%E4%BB%A4"><span class="toc-number">1.25.3.</span> <span class="toc-text">less命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#head%E5%91%BD%E4%BB%A4"><span class="toc-number">1.25.4.</span> <span class="toc-text">head命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tail%E5%91%BD%E4%BB%A4"><span class="toc-number">1.25.5.</span> <span class="toc-text">tail命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi-vim%E5%91%BD%E4%BB%A4"><span class="toc-number">1.26.</span> <span class="toc-text">vi&#x2F;vim命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ln%E5%91%BD%E4%BB%A4"><span class="toc-number">1.27.</span> <span class="toc-text">ln命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#basename%E5%92%8Cdirname%E5%91%BD%E4%BB%A4"><span class="toc-number">1.28.</span> <span class="toc-text">basename和dirname命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#file%E5%91%BD%E4%BB%A4"><span class="toc-number">1.29.</span> <span class="toc-text">file命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dos2uinx%E5%92%8Cuinx2dos"><span class="toc-number">1.30.</span> <span class="toc-text">dos2uinx和uinx2dos</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#od%E5%91%BD%E4%BB%A4"><span class="toc-number">1.31.</span> <span class="toc-text">od命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%A7%A3%E5%8E%8B%E7%BC%A9"><span class="toc-number">1.32.</span> <span class="toc-text">压缩和解压缩</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F%E6%89%A7%E8%A1%8C"><span class="toc-number">1.33.</span> <span class="toc-text">命令是否成功执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E7%BB%AD%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="toc-number">1.34.</span> <span class="toc-text">连续命令执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E3%80%81%E8%BE%93%E5%87%BA%E3%80%81%E5%87%BA%E9%94%99"><span class="toc-number">1.35.</span> <span class="toc-text">标准输入、输出、出错</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E5%87%86%E9%87%8D%E5%AE%9A%E5%90%91"><span class="toc-number">1.36.</span> <span class="toc-text">标准重定向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE"><span class="toc-number">1.37.</span> <span class="toc-text">文件查找</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#locate%E5%91%BD%E4%BB%A4"><span class="toc-number">1.37.1.</span> <span class="toc-text">locate命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#find%E5%91%BD%E4%BB%A4"><span class="toc-number">1.37.2.</span> <span class="toc-text">find命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#grep%E5%91%BD%E4%BB%A4"><span class="toc-number">1.38.</span> <span class="toc-text">grep命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.39.</span> <span class="toc-text">正则表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E9%85%8D%E7%AC%A6"><span class="toc-number">1.40.</span> <span class="toc-text">通配符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%A1%E9%81%93"><span class="toc-number">1.41.</span> <span class="toc-text">管道</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xargs%E3%80%81-exec"><span class="toc-number">1.42.</span> <span class="toc-text">xargs、-exec</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="toc-number">1.43.</span> <span class="toc-text">用户管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E8%B4%A6%E5%8F%B7"><span class="toc-number">1.43.1.</span> <span class="toc-text">添加账号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E8%B4%A6%E5%8F%B7"><span class="toc-number">1.43.2.</span> <span class="toc-text">删除账号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E7%BB%84"><span class="toc-number">1.43.3.</span> <span class="toc-text">添加组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%BB%E9%99%A4%E7%BB%84"><span class="toc-number">1.43.4.</span> <span class="toc-text">移除组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%8A%E7%94%A8%E6%88%B7%E6%B7%BB%E5%8A%A0%E5%88%B0%E7%BB%84%E4%B8%AD"><span class="toc-number">1.43.5.</span> <span class="toc-text">把用户添加到组中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%8A%E7%94%A8%E6%88%B7%E4%BB%8E%E7%BB%84%E4%B8%AD%E7%A7%BB%E9%99%A4"><span class="toc-number">1.43.6.</span> <span class="toc-text">把用户从组中移除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%94%B9%E7%BB%84%E5%90%8D"><span class="toc-number">1.43.7.</span> <span class="toc-text">更改组名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E5%AF%86%E7%A0%81-passwd"><span class="toc-number">1.43.8.</span> <span class="toc-text">设置密码 passwd</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sudo%E6%9D%83%E9%99%90"><span class="toc-number">1.44.</span> <span class="toc-text">sudo权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sudo%E9%85%8D%E7%BD%AE"><span class="toc-number">1.45.</span> <span class="toc-text">sudo配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sudo-vim-etc-sudoers"><span class="toc-number">1.45.1.</span> <span class="toc-text">sudo vim &#x2F;etc&#x2F;sudoers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sudo-visudo"><span class="toc-number">1.45.2.</span> <span class="toc-text">sudo visudo</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ls-l%E5%90%84%E5%AD%97%E6%AE%B5%E5%90%AB%E4%B9%89"><span class="toc-number">1.46.</span> <span class="toc-text">ls -l各字段含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chmod%E5%91%BD%E4%BB%A4"><span class="toc-number">1.47.</span> <span class="toc-text">chmod命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chown%E3%80%81chgrp%E5%91%BD%E4%BB%A4"><span class="toc-number">1.48.</span> <span class="toc-text">chown、chgrp命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%9F%A5%E6%89%BE"><span class="toc-number">1.49.</span> <span class="toc-text">命令查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B2%98%E8%B4%B4%E4%BD%8D%EF%BC%88sticky"><span class="toc-number">1.50.</span> <span class="toc-text">粘贴位（sticky)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#umask%E5%91%BD%E4%BB%A4"><span class="toc-number">1.51.</span> <span class="toc-text">umask命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lsattr%E3%80%81chattr"><span class="toc-number">1.52.</span> <span class="toc-text">lsattr、chattr</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86"><span class="toc-number">1.53.</span> <span class="toc-text">磁盘管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#du%E4%B8%8Edf%E5%91%BD%E4%BB%A4"><span class="toc-number">1.53.1.</span> <span class="toc-text">du与df命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E7%A1%AC%E7%9B%98"><span class="toc-number">1.53.2.</span> <span class="toc-text">添加硬盘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%88%86%E5%8C%BA"><span class="toc-number">1.53.3.</span> <span class="toc-text">创建分区</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#fdisk%E5%88%86%E5%8C%BA"><span class="toc-number">1.53.3.1.</span> <span class="toc-text">fdisk分区</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-number">1.53.4.</span> <span class="toc-text">格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%82%E8%BD%BD"><span class="toc-number">1.53.5.</span> <span class="toc-text">挂载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD"><span class="toc-number">1.53.6.</span> <span class="toc-text">开机自动挂载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#U%E7%9B%98%E3%80%81SD%E5%8D%A1%E6%8C%82%E8%BD%BD%E4%BD%BF%E7%94%A8"><span class="toc-number">1.53.7.</span> <span class="toc-text">U盘、SD卡挂载使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%89%E7%9B%98%E6%8C%82%E8%BD%BD%E4%BD%BF%E7%94%A8"><span class="toc-number">1.53.8.</span> <span class="toc-text">光盘挂载使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86"><span class="toc-number">1.54.</span> <span class="toc-text">网络管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IP%E5%9C%B0%E5%9D%80"><span class="toc-number">1.54.1.</span> <span class="toc-text">IP地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81"><span class="toc-number">1.54.2.</span> <span class="toc-text">子网掩码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E7%BD%91%E5%85%B3"><span class="toc-number">1.54.3.</span> <span class="toc-text">默认网关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DNS"><span class="toc-number">1.54.4.</span> <span class="toc-text">DNS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ifconfig%E5%91%BD%E4%BB%A4"><span class="toc-number">1.54.5.</span> <span class="toc-text">ifconfig命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#route%E5%91%BD%E4%BB%A4"><span class="toc-number">1.54.6.</span> <span class="toc-text">route命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ip%E5%91%BD%E4%BB%A4"><span class="toc-number">1.54.7.</span> <span class="toc-text">ip命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ping%E5%91%BD%E4%BB%A4"><span class="toc-number">1.54.8.</span> <span class="toc-text">ping命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#netstat%E5%91%BD%E4%BB%A4"><span class="toc-number">1.54.9.</span> <span class="toc-text">netstat命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux%E9%98%B2%E7%81%AB%E5%A2%99%EF%BC%9A"><span class="toc-number">1.54.10.</span> <span class="toc-text">Linux防火墙：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%BD%91%E7%BB%9C%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.54.11.</span> <span class="toc-text">虚拟机网络设置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86"><span class="toc-number">1.55.</span> <span class="toc-text">操作系统原理</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
