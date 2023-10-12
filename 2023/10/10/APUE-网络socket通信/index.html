@@ -8,17 +8,24 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>Li的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="APUE">
+  <meta name="description" content="APUE-网络socket通信">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Li的博客">
-<meta property="og:url" content="http://example.com/2023/09/23/APUE%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:url" content="http://example.com/2023/10/10/APUE-%E7%BD%91%E7%BB%9Csocket%E9%80%9A%E4%BF%A1/index.html">
 <meta property="og:site_name" content="Li的博客">
-<meta property="og:description" content="APUE">
+<meta property="og:description" content="APUE-网络socket通信">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-09-23T05:21:38.988Z">
-<meta property="article:modified_time" content="2023-09-24T13:50:52.437Z">
+<meta property="og:image" content="c:\Users\asus\blog\source\assets\img\image-20231011162002875.png">
+<meta property="og:image" content="c:\Users\asus\blog\source\assets\img\image-20231011162612511.png">
+<meta property="og:image" content="c:\Users\asus\blog\source\assets\img\image-20231011201932490.png">
+<meta property="og:image" content="c:\Users\asus\blog\source\assets\img\image-20231011164057026.png">
+<meta property="og:image" content="c:\Users\asus\blog\source\assets\img\image-20231011163932128.png">
+<meta property="og:image" content="c:\Users\asus\blog\source\assets\img\image-20231011222938743.png">
+<meta property="article:published_time" content="2023-10-10T08:03:19.496Z">
+<meta property="article:modified_time" content="2023-10-12T13:07:34.164Z">
 <meta property="article:author" content="Li">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:\Users\asus\blog\source\assets\img\image-20231011162002875.png">
   
     <link rel="alternative" href="/atom.xml" title="Li的博客" type="application/atom+xml">
   
@@ -64,7 +71,7 @@
 			</ul>
 		</nav>
 		<nav>
-   			 总文章数 5
+   			 总文章数 6
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -145,306 +152,206 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-APUE学习" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-APUE-网络socket通信" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="APUE"><a href="#APUE" class="headerlink" title="APUE"></a>APUE</h1><span id="more"></span>
+        <h1 id="APUE-网络socket通信"><a href="#APUE-网络socket通信" class="headerlink" title="APUE-网络socket通信"></a>APUE-网络socket通信</h1><span id="more"></span>
 
-<h2 id="库函数和系统调用"><a href="#库函数和系统调用" class="headerlink" title="库函数和系统调用"></a>库函数和系统调用</h2><table>
-<thead>
-<tr>
-<th align="center">库函数调用</th>
-<th align="center">系统调用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">在所有的ANSI C编译器中，C库函数都是相同的</td>
-<td align="center">各个操作系统的系统调用是不同的，这导致程序不可移植</td>
-</tr>
-<tr>
-<td align="center">它调用库函数中的一段程序（或函数）</td>
-<td align="center">它调用系统内核的服务</td>
-</tr>
-<tr>
-<td align="center">与用户程序相联系</td>
-<td align="center">在内核地址空间执行</td>
-</tr>
-<tr>
-<td align="center">它的运行时间属于“用户时间”</td>
-<td align="center">运行时间属于“系统时间”</td>
-</tr>
-<tr>
-<td align="center">属于过程调用，调用开销较小</td>
-<td align="center">需要在用户控件和内核 上下文环境切换，开销较大</td>
-</tr>
-<tr>
-<td align="center">在C函数库libc中大约有300个函数</td>
-<td align="center">在UNIX中大约有90个系统调用</td>
-</tr>
-<tr>
-<td align="center">典型的C函数库：printf、fopen、fread、malloc</td>
-<td align="center">典型的系统调用：write、open、read、sbrk、fork</td>
-</tr>
-</tbody></table>
-<h2 id="文件I-O系统调用"><a href="#文件I-O系统调用" class="headerlink" title="文件I&#x2F;O系统调用"></a>文件I&#x2F;O系统调用</h2><h3 id="文件和文件描述符"><a href="#文件和文件描述符" class="headerlink" title="文件和文件描述符"></a>文件和文件描述符</h3><h4 id="文件扩展名"><a href="#文件扩展名" class="headerlink" title="文件扩展名"></a>文件扩展名</h4><p>​		在Linux中，扩展名对Linux内核没有实际意义，但是可以用来人为区分不同的文件，方便用户使用。</p>
+<h2 id="网络通信"><a href="#网络通信" class="headerlink" title="网络通信"></a>网络通信</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wmx-learn/p/5312259.html">https://www.cnblogs.com/wmx-learn/p/5312259.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ghostwu/p/8242052.html">https://www.cnblogs.com/ghostwu/p/8242052.html</a></p>
+<p>​		大部分网络应用系统可分为两部分：客户（Client）和服务器（Server），网路服务程序架构又两种：CS模式和BS模式。</p>
+<p>CS:Client&#x2F;Server（客户机&#x2F;服务器）结构，特点：交互性强，具有安全的存取模式，网络通信量低，响应速度快，利于处理大量数据。</p>
+<p>BS：Browser&#x2F;Server（浏览器&#x2F;服务器）结构，特点：分布性强，维护方便，开发简单且共享性强，总体拥有成本低。</p>
+<h3 id="OSI七层模型"><a href="#OSI七层模型" class="headerlink" title="OSI七层模型"></a>OSI七层模型</h3><p><strong>OSI模型</strong>，即<strong>开放式通信系统互联参考模型</strong>（Open System Interconnection Reference Model），是国际标准化组织（ISO）提出的一个试图使各种计算机在世界范围内互连为网络的标准框架，简称OSI。</p>
+<p>数据在网络中传输的过程实际是封装和解封装的过程，发送方通过各种封装处理，把数据转换成比特流的形式，比特流在信号传输的硬件媒介中传输，接收方再把比特流进行解封装处理。</p>
+<p><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2023/10/11/8bf3586ff90b406d.png">https://s3.bmp.ovh/imgs/2023/10/11/8bf3586ff90b406d.png</a></p>
+<p><img src="C:\Users\asus\blog\source\assets\img\image-20231011162002875.png" alt="image-20231011162002875"></p>
+<p><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2023/10/11/802987dd38d092eb.png">https://s3.bmp.ovh/imgs/2023/10/11/802987dd38d092eb.png</a></p>
+<p><img src="C:\Users\asus\blog\source\assets\img\image-20231011162612511.png" alt="image-20231011162612511"></p>
+<h3 id="TCP-IP协议"><a href="#TCP-IP协议" class="headerlink" title="TCP&#x2F;IP协议"></a>TCP&#x2F;IP协议</h3><p>TCP&#x2F;IP（Transmission Control Protocol&#x2F;Internet Protocol，传输控制协议&#x2F;网际协议）是指能够在多个不同网络间实现信息传输的协议簇。TCP&#x2F;IP协议不仅仅指的是TCP 和IP两个协议，而是指一个由FTP、SMTP、TCP、UDP、IP等协议构成的协议簇，简称TCP&#x2F;IP协议。</p>
+<p><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2023/10/11/a57cdbf03d28a9de.png">https://s3.bmp.ovh/imgs/2023/10/11/a57cdbf03d28a9de.png</a></p>
+<p><img src="C:\Users\asus\blog\source\assets\img\image-20231011201932490.png" alt="image-20231011201932490"></p>
+<p>ping命令使用ICMP协议</p>
+<p>ip地址在网络层，mac地址在物理层</p>
+<p>地址解析协议：</p>
+<p>ARP协议：将ip地址翻译为mac地址</p>
+<p>RARP协议：将mac地址翻译为ip地址</p>
+<p><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2023/10/11/3115fe4b47d8246a.png">https://s3.bmp.ovh/imgs/2023/10/11/3115fe4b47d8246a.png</a></p>
+<p><img src="C:\Users\asus\blog\source\assets\img\image-20231011164057026.png" alt="image-20231011164057026"></p>
+<p><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2023/10/11/8be3bc89024bb35b.png">https://s3.bmp.ovh/imgs/2023/10/11/8be3bc89024bb35b.png</a></p>
+<p><img src="C:\Users\asus\blog\source\assets\img\image-20231011163932128.png" alt="image-20231011163932128"></p>
+<h4 id="网络接口层"><a href="#网络接口层" class="headerlink" title="网络接口层"></a><strong>网络接口层</strong></h4><ol>
+<li>数据封装&#x2F;解封装成帧，帧中包括了需要传输的数据，发送方和接收方的物理地址（mac地址）以及检错和控制信息。</li>
+<li>控制帧传输</li>
+<li>流量控制，控制发送的速度</li>
+</ol>
+<h4 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a><strong>网络层</strong></h4><p>IP协议是TCP&#x2F;IP协议簇中最核心的协议，所有TCP、UDP、ICMP、IGMP协议数据都以IP数据报格式传输。IP协议提供的是不可靠的、无连接的数据传输服务。</p>
+<p>IP头默认20个字节  </p>
+<h4 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h4><p>从传输层向更底层看，各层的协议都是直接或间接的服务于主机于主机之间的通信，而传输层是在进程与进程通信层面上的，传输层有两个重要的协议：TCP（传输控制协议）和UDP（用户数据报协议）。</p>
+<h5 id="UDP协议"><a href="#UDP协议" class="headerlink" title="UDP协议"></a>UDP协议</h5><p>用户数据报协议，优点：快，缺点：不可靠、不稳定</p>
 <ul>
-<li>.tar，.tar.gz，.tgz，zip，.tar.bz表示压缩文件，创建命令为tar，gzip，unzip等</li>
-<li>.sh文件表示shell脚本文件</li>
-<li>.pl 表示perl语言文件</li>
-<li>.py 表示python语言文件</li>
-<li>.conf 表示系统服务的配置文件</li>
-<li>.c表示C文件</li>
-<li>.h头文件</li>
-<li>.cpp表示C＋＋源文件</li>
-<li>.so 表示动态库文件</li>
-<li>·a 表示静态库文件</li>
+<li>无连接，发送之前不需要建立连接（TCP需要），减少延时和开销</li>
+<li>面向报文，对IP数据只做简单的封装（8字节报头），减少开销</li>
+<li>没有阻塞机制，宁愿阻塞时丢弃数据不传，也不阻塞造成延时</li>
+<li>支持一对一、一对多、多对一、多对多通信</li>
 </ul>
-<h4 id="文件类型"><a href="#文件类型" class="headerlink" title="文件类型"></a>文件类型</h4><p>​		Linux系统中把一切都看做文件，Linux有7中类型文件：普通文件-、目录（dierectory）文件、符号（link）链接、字符（character）设备文件、块（block）设备文件、管道（pipe）文件、套接字（socket）文件。其中文件、目录、符号链接会占用磁盘空间来存储，而块设备、字符设备、套接字、管道是伪文件，并不占用磁盘空间。</p>
-<p>​		通过ls -l 命令查看文件类型</p>
-<table>
-<thead>
-<tr>
-<th align="center">文件类型标识</th>
-<th align="center">文件类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">-</td>
-<td align="center">普通文件</td>
-</tr>
-<tr>
-<td align="center">d</td>
-<td align="center">目录文件</td>
-</tr>
-<tr>
-<td align="center">l</td>
-<td align="center">符号链接</td>
-</tr>
-<tr>
-<td align="center">c</td>
-<td align="center">字符设备</td>
-</tr>
-<tr>
-<td align="center">b</td>
-<td align="center">块设备</td>
-</tr>
-<tr>
-<td align="center">p</td>
-<td align="center">管道</td>
-</tr>
-<tr>
-<td align="center">s</td>
-<td align="center">套接字socket</td>
-</tr>
-</tbody></table>
-<h4 id="文件描述符"><a href="#文件描述符" class="headerlink" title="文件描述符"></a>文件描述符</h4><p>​		文件描述符(file descriptor， fd) 是Linux内核为了高效管理已被打开的文件所创建的索引， 其是一个<strong>非负整数</strong>(通常是小整数) ， 用于指代被打开的文件， 所有执行I&#x2F;O操作的系统调用都通过文件描述符。程序在开始运行时，系统会自动打开三个文件描述符， <strong>0是标准输入， 1是标准输出， 2是标准错误</strong>。POSIX标准要求<strong>每次打开文件时(含socket) 必须使用当前进程中最小可用的文件描述符号码</strong>， 因此第一次打开的文件描述符一定是3.</p>
-<table>
-<thead>
-<tr>
-<th align="center">文件描述符</th>
-<th align="center">用途</th>
-<th align="center">POSIX文件描述符</th>
-<th align="center">标准I&#x2F;O文件流</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">0</td>
-<td align="center">标准输入</td>
-<td align="center">STDIN_FILENO</td>
-<td align="center">stdin</td>
-</tr>
-<tr>
-<td align="center">1</td>
-<td align="center">标准输出</td>
-<td align="center">STDOUT_FILENO</td>
-<td align="center">stdout</td>
-</tr>
-<tr>
-<td align="center">2</td>
-<td align="center">标准出错</td>
-<td align="center">STDERR_FILENO</td>
-<td align="center">stderr</td>
-</tr>
-</tbody></table>
-<h3 id="文件I-O操作"><a href="#文件I-O操作" class="headerlink" title="文件I&#x2F;O操作"></a>文件I&#x2F;O操作</h3><h4 id="程序编写"><a href="#程序编写" class="headerlink" title="程序编写"></a>程序编写</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*头文件包含，可以通过man手册查找*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;errno.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*MSG_STR是写到文件中的内容，是一个常量，会保存到程序的只读数据段中*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BUFSIZE 1024</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MSG_STR <span class="string">&quot;Hello World\n&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc,<span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">        <span class="type">int</span> fd = <span class="number">-1</span>;	<span class="comment">//文件描述符，正常应该为非负的整数</span></span><br><span class="line">        <span class="type">int</span> rv = <span class="number">-1</span>;	<span class="comment">//返回值return value</span></span><br><span class="line">        <span class="type">char</span> buf[BUFSIZE];	<span class="comment">//存放从文件中读到的数据</span></span><br><span class="line"></span><br><span class="line">        fd = open(<span class="string">&quot;test.txt&quot;</span>,O_RDWR|O_CREAT|O_TRUNC,<span class="number">0666</span>);	<span class="comment">//调用open()系统调用并返回一个文件描述符保存在fd中</span></span><br><span class="line">        <span class="keyword">if</span>(fd &lt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">/*perror()函数可以打印出错的原因,但是不能处理要进行格式化控制的输出或写入日志文件 */</span>      </span><br><span class="line">                perror(<span class="string">&quot;Open/Creat file test.txt failure&quot;</span>);      </span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Open file returned file descriptor [%d]\n&quot;</span>,fd);</span><br><span class="line">        <span class="comment">/* write（写到哪里，写什么，写的大小）</span></span><br><span class="line"><span class="comment">    	 *用strlen是因为MSG_STR是宏定义，宏定义是地址*/</span></span><br><span class="line">        <span class="keyword">if</span>((rv = write(fd,MSG_STR,<span class="built_in">strlen</span>(MSG_STR))) &lt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">/*strerror()函数可以将整型类型的出错原因errno转换成相应的字符串形式*/</span></span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;Write %d bytes into file failure: %s\n&quot;</span>,rv,strerror(errno));</span><br><span class="line">                <span class="keyword">goto</span> cleanup;	<span class="comment">//在做错误处理时一般会用goto，做集中的错误处理</span></span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/*test.txt里有成功写入,但总是Read 0 bytes data from file，这是因为在Hello World写入后，文件偏移量（类似光标）位于World的后方，读或写入时从光标所在位置开始读写，所以读不到值，通过lseek()系统调用将文件偏移量设置到第一个字节后，Read 12 bytes data from file: Hello World</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">    <span class="comment">//lseek(fd, 0, SEEK_SET);</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/*buf在栈中,栈中的数据是随机数，在使用buf时不对buf进行初始化，会导致后面打印出的是个随机数。因此在往buf中写内容前要先用memset将buf中的内容清掉*/</span></span><br><span class="line">        <span class="built_in">memset</span>(buf,<span class="number">0</span>,<span class="keyword">sizeof</span>(buf));	</span><br><span class="line">        <span class="keyword">if</span>( (rv=read(fd,buf,<span class="keyword">sizeof</span>(buf))) &lt; <span class="number">0</span> )</span><br><span class="line">        &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;Read data from file failure: %s\n&quot;</span>,strerror(errno));</span><br><span class="line">                <span class="keyword">goto</span> cleanup;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Read %d bytes data from file: %s\n&quot;</span>,rv,buf);</span><br><span class="line"></span><br><span class="line">cleanup:</span><br><span class="line">        close(fd);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*非main函数return只会导致函数退出</span></span><br><span class="line"><span class="comment">         *main函数的return会调用exit()，导致整个进程中止</span></span><br><span class="line"><span class="comment">         *同理，其他非main函数调用exit()一样会导致整个进程中止</span></span><br><span class="line"><span class="comment">         *程序结束后，可以通过&quot;echo $?&quot;命令查看返回值*/</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>strlen()和sizeof()的区别：</strong></p>
+<h5 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h5><p>传输控制协议，面向连接、提供可靠的数据传输服务（20字节报文头）。</p>
 <ul>
-<li><code>sizeof()</code> 是一个运算符，而 <code>strlen()</code> 是一个函数。</li>
-<li><code>sizeof()</code> 计算的是变量或类型所占用的内存字节数，而 <code>strlen()</code> 计算的是字符串中字符的个数。</li>
-<li><code>sizeof()</code> 可以用于任何类型的数据，而 <code>strlen()</code> 只能用于以空字符 ‘\0’ 结尾的字符串。</li>
-<li><code>sizeof() </code>计算字符串的长度，包含末尾的 ‘\0’，<code>strlen() </code>计算字符串的长度，不包含字符串末尾的 ‘\0’。</li>
+<li>使用前需要进行”三次握手“建立连接，通信结束后还要使用”四次挥手“断开连接。</li>
+<li>点对点的连接，一条TCP连接只能连接两个端点</li>
+<li>提供可靠传输，无差错、不丢失、不重复、按顺序</li>
+<li>提供全双工通信，允许通信双方任何时候都能发送数据，发送方设有发送缓存，接收方有接收缓存</li>
+<li>面向字节流</li>
 </ul>
-<h4 id="程序编译运行"><a href="#程序编译运行" class="headerlink" title="程序编译运行"></a>程序编译运行</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">li@ubuntu22:~/apue$ gcc file_io.c -o file_io</span><br><span class="line">li@ubuntu22:~/apue$ ./file_io</span><br><span class="line">Open file returned file descriptor [3]</span><br><span class="line">Read 0 bytes data from file:</span><br><span class="line">li@ubuntu22:~/apue$ ./file_io</span><br><span class="line">Open file returned file descriptor [3]	#再运行一次还是3，描述符是当前进程最小可用的，第二次运行是新的进程</span><br><span class="line">Read 0 bytes data from file:</span><br><span class="line">li@ubuntu22:~/apue$ cat test.txt #通过cat test. txt命令查看文件内容验证 &quot;Hello World&quot;字符串确实被wirte()系统调用写入到了文件中</span><br><span class="line">Hello World</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="文件I-O操作函数"><a href="#文件I-O操作函数" class="headerlink" title="文件I&#x2F;O操作函数"></a>文件I&#x2F;O操作函数</h3><h4 id="open-系统调用"><a href="#open-系统调用" class="headerlink" title="open()系统调用"></a>open()系统调用</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">open</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *path, <span class="type">int</span> :flag, ... <span class="comment">/*mode_t mode*/</span>)</span>;</span><br></pre></td></tr></table></figure>
-
-<p>open()系统调用用来打开一个文件， 并返回一个文件描述符(file description)， 并且该文件描述符是当前进程，最小、未使用的文件描述符数值。</p>
-<p>参数： path： 要打开的文件、设备的路径</p>
-<p>​			oflag: 由多个选项进行 “或”运算构造oflag参数。</p>
-<p>​			必选：O_RDONLY(只读)、 O_WRONLY(只写)、 O_RDWR(读写)</p>
-<p>​			可选：O_APPEND 每次写时都追加到文件的尾端。</p>
-<p>​						O_CREAT 文件不存在则创建它， 使用该选项需要第三个参数mode</p>
-<p>​						O_TRUNC 如果文件存在，而且为只写或读写成功打开，则将其长度截取为0</p>
-<p>​						O_NONBLOCK 如果path是一个FIFO、块设备、字符特殊文件则此选项为文件的本次打开和后续的I&#x2F;O操作设置非阻塞模式方式。</p>
-<p>​						O_EXEC、O_SEARCH、O_CLOEXEC、O_NOCTTY….</p>
-<p>​			mode： oflag带O_CREAT选项时可以用来创建文件， 这时必须带该参数用来指定创建文件的权限模式，如0666。否则不需要。使用示例代码：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> fd;</span><br><span class="line">fd = open(<span class="string">&quot;text. txt&quot;</span>, O_RDWR|O_CREAT|O_TRUNC,</span><br><span class="line"><span class="number">0666</span>);	<span class="comment">//O_RDWR文件打开可以通过文件描述符可读可写，O_CREAT文件不存在则创建，O_TRUNC如果文件中有内容先把文件清掉</span></span><br><span class="line">fd =open(<span class="string">&quot;text. txt&quot;</span>, O_WRONLY|O_APPEND);	<span class="comment">//O_WRONLY只写，O_APPEND追加到文件尾，如果文件不存在则返回-1</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="creat-系统调用"><a href="#creat-系统调用" class="headerlink" title="creat()系统调用"></a>creat()系统调用</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*用来创建一个新文件并返回其fd，等价于open(path, O_WRONLY|O_CREAT|O_TRUNC,mode);*/</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">creat</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *path,<span class="type">mode_t</span> mode)</span>;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="close-系统调用"><a href="#close-系统调用" class="headerlink" title="close()系统调用"></a>close()系统调用</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*用来关闭一个打开的文件描述符*/</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">close</span><span class="params">(<span class="type">int</span> fd)</span>;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="write-系统调用"><a href="#write-系统调用" class="headerlink" title="write()系统调用"></a>write()系统调用</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*用来往打开的文件描述符fd指向的文件中写入buf指向的数据，nbytes指定要写入的数据大小*/</span></span><br><span class="line"><span class="type">size_t</span> <span class="title function_">write</span><span class="params">(<span class="type">int</span> fd,<span class="type">const</span> <span class="type">void</span> *buf,<span class="type">size_t</span> nbytes)</span>;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="read-系统调用"><a href="#read-系统调用" class="headerlink" title="read()系统调用"></a>read()系统调用</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*用来从打开的文件描述符对应的文件中读取数据放到buf指向的内存空间中去，最多不要超过nbytes个字节，nbytes一般是buf剩余的空间大小*/</span></span><br><span class="line"><span class="type">size_t</span> <span class="title function_">read</span><span class="params">(<span class="type">int</span> fd,<span class="type">void</span> *buf,<span class="type">size_t</span> nbytes)</span>;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h4 id="lseek-系统调用"><a href="#lseek-系统调用" class="headerlink" title="lseek()系统调用"></a>lseek()系统调用</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">off_t</span> <span class="title function_">lseek</span><span class="params">(<span class="type">int</span> fd, <span class="type">off_t</span> offset, <span class="type">int</span> whence)</span>;</span><br></pre></td></tr></table></figure>
-
-<p>我们在从文件里读出内容， 或往文件写如内容的时候都有一个起始地址， 这个起始地址就是当前文件偏移量，当我们对文件进行读写的时候都会使文件偏移量往后偏移。这点就类似于我们打开记事本开始编辑文本时的光标， 我们读或写入时从光标所在位置开始读写， 每读写一个字节都会使光标往后偏移。通过lseek()这个函数我们可以调整文件偏移量的地址。</p>
-<p>其中 whence 可以是以下三个值</p>
+<h4 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h4><p>常见端口：</p>
 <table>
 <thead>
 <tr>
-<th align="center">whence</th>
-<th align="center">位置</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">SEEK_SET</td>
-<td align="center">文件头</td>
-</tr>
-<tr>
-<td align="center">SEEK_CUR</td>
-<td align="center">当前位置</td>
-</tr>
-<tr>
-<td align="center">SEEK_END</td>
-<td align="center">文件尾</td>
-</tr>
-</tbody></table>
-<p>而offset就是相对于whence 的偏移量, 譬如:</p>
-<p>lseek(fd, 0, SEEK_SET); 将文件偏移量设置到了文件开始的第一个字节上</p>
-<p>lseek(fd, 0, SEEK_END); 将文件偏移量设置到文件最后一个字节上</p>
-<p>lseek(fd, -1, SEEK_END); 将文件偏移量设置到文件最后的倒数第一个字节上</p>
-<h4 id="dup-和dup2-系统调用"><a href="#dup-和dup2-系统调用" class="headerlink" title="dup()和dup2()系统调用"></a>dup()和dup2()系统调用</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">dup</span><span class="params">(<span class="type">int</span> fd)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">dup2</span><span class="params">(<span class="type">int</span> fd,<span class="type">int</span> fd2)</span>;</span><br></pre></td></tr></table></figure>
-
-<p>这两个函数都可以用来复制一个新的文件描述符来指向fd对应的文件。这两个系统调用经常用在标准输入、标准输出、标准出错重定向。</p>
-<p>dup0返回的新文件描述符一定是当前可用文件描述符中的最小数值</p>
-<p>dup2可以用fd2参数来指定新的文件描述符。如果fd2已经打开，则先关闭。如fd等于fd2，则dup2返回fd2，而不关闭它。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;errno.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc,<span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">        <span class="type">int</span> fd = <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">        fd = open(<span class="string">&quot;std.txt&quot;</span>,O_RDWR|O_CREAT|O_TRUNC,<span class="number">0666</span>);</span><br><span class="line">        <span class="keyword">if</span>( fd &lt; <span class="number">0</span> )</span><br><span class="line">        &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;Open file failure: %s\n&quot;</span>,strerror(errno));</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        close(<span class="number">0</span>);	<span class="comment">//用dup()先close()</span></span><br><span class="line">        close(<span class="number">1</span>);</span><br><span class="line">        close(<span class="number">2</span>);</span><br><span class="line">		dup(fd);    <span class="comment">//0 标准输入</span></span><br><span class="line">		dup(fd);    <span class="comment">//1 标准输出</span></span><br><span class="line">		dup(fd);    <span class="comment">//2 标准错误输出</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//    dup2(fd, STDIN_FILENO);     // 标准输入重定向到fd</span></span><br><span class="line"><span class="comment">//    dup2(fd, STDOUT_FILENO);    // 标准输出重定向到fd</span></span><br><span class="line"><span class="comment">//    dup2(fd, STDERR_FILENO);    // 标准错误输出重定向到fd</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;fd=%d\n&quot;</span>,fd);</span><br><span class="line"></span><br><span class="line">        close(fd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">li@ubuntu22:~/apue$ vim redirect_stdio.c</span><br><span class="line">li@ubuntu22:~/apue$ gcc redirect_stdio.c -o redirect_stdio</span><br><span class="line">li@ubuntu22:~/apue$ ./redirect_stdio</span><br><span class="line">li@ubuntu22:~/apue$ echo $?</span><br><span class="line">0</span><br><span class="line">li@ubuntu22:~/apue$ ls</span><br><span class="line">file_io  file_io.c  redirect_stdio  redirect_stdio.c  std.txt  test.txt</span><br><span class="line">li@ubuntu22:~/apue$ cat std.txt</span><br><span class="line">fd=3</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="stat-和fstat-系统调用"><a href="#stat-和fstat-系统调用" class="headerlink" title="stat()和fstat()系统调用"></a>stat()和fstat()系统调用</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">stat</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *<span class="keyword">restrict</span> path,<span class="keyword">struct</span> stat *<span class="keyword">restrict</span> buf)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">fstat</span><span class="params">(<span class="type">int</span> fd,<span class="keyword">struct</span> stat *buf)</span>;</span><br></pre></td></tr></table></figure>
-
-<p>用于返回文件或目录相关信息，stat()第一个参数是文件名，而fstat()第一个参数是文件打开的相应文件描述符。</p>
-<p>struct stat结构体的定义：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stat</span> &#123;</span></span><br><span class="line">    <span class="type">dev_t</span> st_dev;         <span class="comment">// 文件的设备 ID</span></span><br><span class="line">    <span class="type">ino_t</span> st_ino;         <span class="comment">// 文件的 inode 号</span></span><br><span class="line">    <span class="type">mode_t</span> st_mode;       <span class="comment">// 文件类型和权限</span></span><br><span class="line">    <span class="type">nlink_t</span> st_nlink;     <span class="comment">// 文件的硬链接数目</span></span><br><span class="line">    <span class="type">uid_t</span> st_uid;         <span class="comment">// 文件所有者的用户 ID</span></span><br><span class="line">    <span class="type">gid_t</span> st_gid;         <span class="comment">// 文件所有者的组 ID</span></span><br><span class="line">    <span class="type">dev_t</span> st_rdev;        <span class="comment">// 设备文件的设备 ID</span></span><br><span class="line">    <span class="type">off_t</span> st_size;        <span class="comment">// 文件总大小（以字节为单位）</span></span><br><span class="line">    <span class="type">blksize_t</span> st_blksize; <span class="comment">// 文件系统的 I/O 缓冲区大小</span></span><br><span class="line">    <span class="type">blkcnt_t</span> st_blocks;   <span class="comment">// 分配给文件的磁盘块数</span></span><br><span class="line">    <span class="type">time_t</span> st_atime;      <span class="comment">// 最后一次访问时间</span></span><br><span class="line">    <span class="type">time_t</span> st_mtime;      <span class="comment">// 最后一次修改时间</span></span><br><span class="line">    <span class="type">time_t</span> st_ctime;      <span class="comment">// 最后一次更改时间（修改文件的权限或者所有者）</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc,<span class="type">char</span> **argv)</span></span><br><span class="line">&#123;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">stat</span> <span class="title">stbuf</span>;</span></span><br><span class="line"></span><br><span class="line">        stat(<span class="string">&quot;stat.c&quot;</span>,&amp;stbuf);</span><br><span class="line">    </span><br><span class="line">        <span class="comment">/*stbuf是一个指针，在栈区，它指向的地址是一个随机地址（野指针），使用指针一定要先初始化:</span></span><br><span class="line"><span class="comment">        1、 使用malloc</span></span><br><span class="line"><span class="comment">        	struct stat *stbuf;</span></span><br><span class="line"><span class="comment">        	stbuf = malloc（sizeof（struct stat））</span></span><br><span class="line"><span class="comment">        2、定义一个变量stbuf，传&amp;stbuf</span></span><br><span class="line"><span class="comment">        	struct stat stbuf;</span></span><br><span class="line"><span class="comment">        	stat(&quot;stat.c&quot;,&amp;stbuf);</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        <span class="comment">//struct stat *stbuf;</span></span><br><span class="line">        <span class="comment">//stat(&quot;stat.c&quot;,stbuf);</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    	<span class="comment">/*fstat()要先用open()后使用*/</span></span><br><span class="line"><span class="comment">//    	int fd = -1;</span></span><br><span class="line"><span class="comment">//    	fd = open(&quot;stat.c&quot;,O_RSONLY);</span></span><br><span class="line"><span class="comment">//    	fstat(fd,stbuf);</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;File Mode: %o Real Size: %luB,Space Size: %luB\n&quot;</span>,stbuf.st_mode,stbuf.st_size,stbuf.st_blksize);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">li@ubuntu22:~/apue$ vim stat.c</span><br><span class="line">li@ubuntu22:~/apue$ gcc stat.c -o stat</span><br><span class="line">li@ubuntu22:~/apue$ ./stat</span><br><span class="line">File Mode: 100664 Real Size: 283B,Space Size: 4096B</span><br><span class="line">li@ubuntu22:~/apue$</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="access-系统调用"><a href="#access-系统调用" class="headerlink" title="access()系统调用"></a>access()系统调用</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">access</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *path,<span class="type">int</span> mode)</span></span><br></pre></td></tr></table></figure>
-
-<p>用来测试文件是否存在或测试其权限位，其中第一个参数path是相应的文件路径名，第二个参数是要测试的模式。</p>
-<p>mode说明:</p>
-<table>
-<thead>
-<tr>
-<th align="center">模式</th>
+<th align="center">端口号</th>
+<th align="center">名称</th>
 <th align="center">说明</th>
 </tr>
 </thead>
 <tbody><tr>
-<td align="center">R_OK</td>
-<td align="center">测试读许可权</td>
+<td align="center">20</td>
+<td align="center">ftp-data</td>
+<td align="center">FTP数据端口</td>
 </tr>
 <tr>
-<td align="center">W_OK</td>
-<td align="center">测试写许可权</td>
+<td align="center">21</td>
+<td align="center">ftp</td>
+<td align="center">文件传输协议（FTP）控制端口</td>
 </tr>
 <tr>
-<td align="center">X_OK</td>
-<td align="center">测试执行许可权</td>
+<td align="center">22</td>
+<td align="center">ssh</td>
+<td align="center">安全Shell远程登录服务</td>
 </tr>
 <tr>
-<td align="center">F_OK</td>
-<td align="center">测试文件是否存在</td>
+<td align="center">23</td>
+<td align="center">telnet</td>
+<td align="center">Telnet远程登录服务</td>
+</tr>
+<tr>
+<td align="center">25</td>
+<td align="center">smtp</td>
+<td align="center">简单邮件传输协议（STMP）</td>
+</tr>
+<tr>
+<td align="center">53</td>
+<td align="center">dns</td>
+<td align="center">域名服务</td>
+</tr>
+<tr>
+<td align="center">69</td>
+<td align="center">tftp</td>
+<td align="center">简单文件传输协议</td>
+</tr>
+<tr>
+<td align="center">80</td>
+<td align="center">http</td>
+<td align="center">用于万维网（www)服务的超文本传输协议</td>
+</tr>
+<tr>
+<td align="center">123</td>
+<td align="center">ntp</td>
+<td align="center">网络时间协议</td>
+</tr>
+<tr>
+<td align="center">161&#x2F;162</td>
+<td align="center">snmp</td>
+<td align="center">简单网络管理协议</td>
+</tr>
+<tr>
+<td align="center">443</td>
+<td align="center">https</td>
+<td align="center">安全超文本传输协议</td>
+</tr>
+<tr>
+<td align="center">1433</td>
+<td align="center">mysql</td>
+<td align="center">数据库服务程序默认端口</td>
+</tr>
+<tr>
+<td align="center">8080</td>
+<td align="center">tomcat</td>
+<td align="center">java服务程序默认端口</td>
 </tr>
 </tbody></table>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> TEST_FILE <span class="string">&quot;access.c&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc,<span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">    	<span class="comment">//测试文件是否存在</span></span><br><span class="line">        <span class="keyword">if</span>(access(TEST_FILE,F_OK) != <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;File %s not exist!\n&quot;</span>,TEST_FILE);</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;File %s not exist!\n&quot;</span>,TEST_FILE);</span><br><span class="line"></span><br><span class="line">    	<span class="comment">//测试读许可权</span></span><br><span class="line">        <span class="keyword">if</span>(access(TEST_FILE,R_OK)==<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;READ OK\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="comment">//测试写许可权</span></span><br><span class="line">        <span class="keyword">if</span>(access(TEST_FILE,W_OK)==<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;WRITE OK\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="comment">//测试执行许可权</span></span><br><span class="line">        <span class="keyword">if</span>(access(TEST_FILE,X_OK)==<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;EXEC OK\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">li@ubuntu22:~/apue$ ./access</span><br><span class="line">File access.c not exist!</span><br><span class="line">READ OK</span><br><span class="line">WRITE OK</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="unlink-系统调用"><a href="#unlink-系统调用" class="headerlink" title="unlink()系统调用"></a>unlink()系统调用</h4><p>用来删除文件，其本质是让文件的链接记数自减，当链接记数减为0时，文件会被自动删除。（Linux下rm命令其实就是调用了unlink()系统调用）</p>
-<h4 id="rename-系统调用"><a href="#rename-系统调用" class="headerlink" title="rename()系统调用"></a>rename()系统调用</h4><p>将文件重命名</p>
-<h4 id="文件夹操作相关系统调用"><a href="#文件夹操作相关系统调用" class="headerlink" title="文件夹操作相关系统调用"></a>文件夹操作相关系统调用</h4><table>
-<thead>
-<tr>
-<th align="center">函数原型</th>
-<th align="center">函数说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center"><code>int mkdir(const char *pathname,mode_t mode)</code></td>
-<td align="center">创建文件夹</td>
-</tr>
-<tr>
-<td align="center"><code>int rmdir(const char *pathname)</code></td>
-<td align="center">删除文件夹(文件夹必须为空)</td>
-</tr>
-<tr>
-<td align="center"><code>DIR *opendir(const char *pathname)</code></td>
-<td align="center">打开文件夹</td>
-</tr>
-<tr>
-<td align="center"><code>struct dirent *readdir(DIR *dp)</code></td>
-<td align="center">读文件夹</td>
-</tr>
-<tr>
-<td align="center"><code>int closedir(DIR *dp)</code></td>
-<td align="center">关闭文件夹</td>
-</tr>
-<tr>
-<td align="center"><code>int chdir(const char *pathname)</code></td>
-<td align="center">改变工作目录</td>
-</tr>
-</tbody></table>
-<p>readdir()系统调用的struct dirent：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">dirent</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">　　<span class="type">long</span> d_ino; <span class="comment">/* inode number 索引节点号 */</span></span><br><span class="line">    <span class="type">off_t</span> d_off; <span class="comment">/* offset to this dirent 在目录文件中的偏移 */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">short</span> d_reclen; <span class="comment">/* length of this d_name 文件名长 */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> d_type; <span class="comment">/* the type of d_name 文件类型 */</span></span><br><span class="line">    <span class="type">char</span> d_name [NAME_MAX+<span class="number">1</span>]; <span class="comment">/* file name (null-terminated) 文件名，最长255字符 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>端口号是16位，因此端口号的范围是0<del>65535，其中1</del>1024是被RFC3232规定好的，<strong>监听该范围端口程序必须以root权限运行</strong>；1025~65535的端口被称为动态端口，<strong>写服务器程序时，一般使用该范围内的端口。</strong>可以使用netstat命令查看当前主机上运行了哪些服务程序并监听了哪些端口。</p>
+<p>一个TCP的网络连接中包含一个四元组：源IP、目的IP、源端口和目的端口。</p>
+<h2 id="socket编程"><a href="#socket编程" class="headerlink" title="socket编程"></a>socket编程</h2><h3 id="socket通信简介"><a href="#socket通信简介" class="headerlink" title="socket通信简介"></a>socket通信简介</h3><p>网络层的”IP地址“可以唯一标识网络中的主机，而传输层的”端口“可以唯一标识主机中的应用程序。这样通过IP地址和端口就可以标识网络的进程了，网络中的进程通信就可以利用这个标志与其他进程进行交互。使用TCP&#x2F;IP协议的应用程序通常采用应用编程接口：UNIX BSD的套接字（socket）来实现网络进程之间的通信。</p>
+<p>socket是应用层与TCP&#x2F;IP协议簇通信的中间软件抽象层。</p>
+<p>应用程序要为因特网通信建立一个socket时，操作系统就返回一个小整数作为描述符来标识这个套接字。应用程序以改描述符作为传递参数，通过调用相应函数来完成操作。</p>
+<p><strong>socket通信基本流程：</strong></p>
+<p><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2023/10/11/d8c52bf846cfba86.png">https://s3.bmp.ovh/imgs/2023/10/11/d8c52bf846cfba86.png</a></p>
+<p><img src="C:\Users\asus\blog\source\assets\img\image-20231011222938743.png" alt="image-20231011222938743"></p>
+<h3 id="socket服务器和客户端代码"><a href="#socket服务器和客户端代码" class="headerlink" title="socket服务器和客户端代码"></a>socket服务器和客户端代码</h3><h4 id="服务器代码"><a href="#服务器代码" class="headerlink" title="服务器代码"></a>服务器代码</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;errno.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LISTEN_PORT</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BACKLOG</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">        <span class="type">int</span>                     rv = <span class="number">-1</span>;</span><br><span class="line">        <span class="type">int</span>                     listen_fd, client_fd = <span class="number">-1</span>;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span>      <span class="title">serv_addr</span>,<span class="title">cli_addr</span>;</span></span><br><span class="line">        <span class="type">socklen_t</span>               cliaddr_len = <span class="number">1</span>;</span><br><span class="line">        <span class="type">char</span>                    buf[<span class="number">1024</span>];</span><br><span class="line"></span><br><span class="line">        listen_fd = socket(AF_INET,SOCK_STREAM,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span>( listen_fd &lt; <span class="number">0</span> )</span><br><span class="line">        &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;creat socket failure: %s\n&quot;</span>,strerror(errno));</span><br><span class="line">                <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;socket creat fd[%d]\n&quot;</span>,listen_fd);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">memset</span>(&amp;serv_addr,<span class="number">0</span>,<span class="keyword">sizeof</span>(serv_addr));</span><br><span class="line">        serv_addr.sin_family = AF_INET;	<span class="comment">//sin_family指定ipv4还是ipv6</span></span><br><span class="line">        serv_addr.sin_port = htons(LISTEN_PORT);	<span class="comment">//sin_port指定端口，htons将主机字节序转为网络字节序</span></span><br><span class="line">    	<span class="comment">/*要监听的IP,INADDR_ANY即监听所有IP，如果要监听某个IP，用inet_aton()函数转为四字节整数形式,一般用宏*/</span></span><br><span class="line">    	serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);	</span><br><span class="line">    	<span class="comment">/*(struct sockaddr *)&amp;serv_addr结构体类型强制转换，将sockaddr_in转为sockaddr ，sin_port和sin_addr都放在sa_data[14]中 */</span></span><br><span class="line">        <span class="keyword">if</span>( bind(listen_fd,(<span class="keyword">struct</span> sockaddr *)&amp;serv_addr,<span class="keyword">sizeof</span>(serv_addr)) &lt; <span class="number">0</span> )	</span><br><span class="line">        &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;creat socket failure: %s\n&quot;</span>,strerror(errno));</span><br><span class="line">                <span class="keyword">return</span> <span class="number">-2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;socket [%d] bind on port [%d] for all IP address ok\n&quot;</span>,listen_fd,LISTEN_PORT);</span><br><span class="line"></span><br><span class="line">        listen(listen_fd,BACKLOG);	<span class="comment">//把主动的socket变为被动的</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;Start waiting and accept new client connect...\n&quot;</span>,listen_fd);</span><br><span class="line">                client_fd = accept(listen_fd,(<span class="keyword">struct</span> sockaddr*)&amp;cli_addr,&amp;cliaddr_len); <span class="comment">//如果不需要ip和端口则传NULL</span></span><br><span class="line">                <span class="keyword">if</span>( client_fd &lt; <span class="number">0</span> )</span><br><span class="line">                &#123;</span><br><span class="line">                        <span class="built_in">printf</span>(<span class="string">&quot;accept new socket failure: %s\n&quot;</span>,strerror(errno));</span><br><span class="line">                        <span class="keyword">return</span> <span class="number">-3</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;accept new client[%s:%d] with fd[%d]\n&quot;</span>,inet_ntoa(cli_addr.sin_addr),ntohs(cli_addr.sin_port),client_fd);</span><br><span class="line"></span><br><span class="line">                <span class="built_in">memset</span>(buf,<span class="number">0</span>,<span class="keyword">sizeof</span>(buf);</span><br><span class="line">                <span class="keyword">if</span>( (rv = read(clien_fd,buf,<span class="keyword">sizeof</span>(buf))) &lt; <span class="number">0</span> )	<span class="comment">//&lt; 0出错</span></span><br><span class="line">                &#123;</span><br><span class="line">                        <span class="built_in">printf</span>(<span class="string">&quot;read data from client socket[%d] failure:%s\n&quot;</span>,client_fd,strerror(errno));</span><br><span class="line">                close(client_fd);</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>( rv == <span class="number">0</span>)	<span class="comment">//=0说明断开连接</span></span><br><span class="line">                &#123;</span><br><span class="line">                        <span class="built_in">printf</span>(<span class="string">&quot;client socket[%d] disconnected\n&quot;</span>,client_fd);</span><br><span class="line">                        close(client_fd);</span><br><span class="line">                        <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;read %d bytes data from client[%d] and echo it back:&#x27;%s&#x27;\n&quot;</span>,rv,client_fd,buf);</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span>( write(client_fd,buf,rv) &lt; <span class="number">0</span> )</span><br><span class="line">                &#123;</span><br><span class="line">                        <span class="built_in">printf</span>(<span class="string">&quot;write %d bytes data back to client[%d] failure: %s\n&quot;</span>,rv,client_fd,strerror(errno));</span><br><span class="line">                        close(client_fd);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                sleep(<span class="number">1</span>);</span><br><span class="line">                close(client_fd);</span><br><span class="line">        &#125;</span><br><span class="line">        close(listen_fd);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;errno.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> TEST_DIR <span class="string">&quot;dir&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc,<span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">        <span class="type">int</span> rv = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> fd1 = <span class="number">-1</span>;</span><br><span class="line">        <span class="type">int</span> fd2 = <span class="number">-1</span>;</span><br><span class="line">        DIR *dirp = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">dirent</span> *<span class="title">direntp</span> =</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    	<span class="comment">/* 创建文件夹，文件权限755 */</span></span><br><span class="line">        <span class="keyword">if</span>( mkdir(TEST_DIR,<span class="number">0755</span>) &lt; <span class="number">0</span> )</span><br><span class="line">        &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;creat directory &#x27;%s&#x27; failure: %s\n&quot;</span>,TEST_DIR,strerror(errno));</span><br><span class="line">                <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    	<span class="comment">/* 更改当前工作路径到文件夹dir下 */</span></span><br><span class="line">        <span class="keyword">if</span>( chdir(TEST_DIR) &lt; <span class="number">0</span> )</span><br><span class="line">        &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;change directory &#x27;%s&#x27; failure: %s\n&quot;</span>,TEST_DIR,strerror(errno));</span><br><span class="line">                rv = <span class="number">-2</span>;</span><br><span class="line">                <span class="keyword">goto</span> cleanup;</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">    	<span class="comment">/* 在dir文件夹下 创建普通文本文件file1.txt，并设置其权限位为644 */</span></span><br><span class="line">		<span class="keyword">if</span>( (fd1 = creat(<span class="string">&quot;file1.txt&quot;</span>,<span class="number">0644</span>)) &lt; <span class="number">0</span> )</span><br><span class="line">        &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;creat file1.txt failure: %s\n&quot;</span>,strerror(errno));</span><br><span class="line">                rv = <span class="number">-3</span>;</span><br><span class="line">                <span class="keyword">goto</span> cleanup;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    	<span class="comment">/* 在dir文件夹下 创建普通文本文件file2.txt，并设置其权限位为644 */</span></span><br><span class="line">        <span class="keyword">if</span>( (fd1 = creat(<span class="string">&quot;file2.txt&quot;</span>,<span class="number">0644</span>)) &lt; <span class="number">0</span> )</span><br><span class="line">        &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;creat file2.txt failure: %s\n&quot;</span>,strerror(errno));</span><br><span class="line">                rv = <span class="number">-4</span>;</span><br><span class="line">                <span class="keyword">goto</span> cleanup;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">   		 <span class="comment">/* 更改当前工作路径到父目录去 */</span></span><br><span class="line">        <span class="keyword">if</span>( chdir(<span class="string">&quot;../&quot;</span>) &lt; <span class="number">0</span> )</span><br><span class="line">        &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;change directory to &#x27;%s&#x27; failure: %s\n&quot;</span>,TEST_DIR,strerror(errno));</span><br><span class="line">                rv = <span class="number">-5</span>;</span><br><span class="line">                <span class="keyword">goto</span> cleanup;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    	<span class="comment">/* 打开dir文件夹 */</span></span><br><span class="line">        <span class="keyword">if</span> ((dirp = opendir(TEST_DIR)) == <span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;opendir %s error: %s\n&quot;</span>, TEST_DIR, strerror(errno));</span><br><span class="line">                rv = <span class="number">-6</span>;</span><br><span class="line">                <span class="keyword">goto</span> cleanup;</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">    	<span class="comment">/* 列出dir里面的所有文件和文件夹,一个文件夹下至少要有.和..两个文件，从文件夹下读时，每个文件都是一个dirent*/</span></span><br><span class="line">		<span class="keyword">while</span>((direntp = readdir(dirp)) != <span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;find file: %s\n&quot;</span>,direntp-&gt;d_name);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    	<span class="comment">/* 关闭所有打开的文件夹 */</span></span><br><span class="line">        closedir(dirp);</span><br><span class="line">        <span class="keyword">return</span> rv;</span><br><span class="line"></span><br><span class="line">cleanup:</span><br><span class="line">        <span class="keyword">if</span>(fd1 &gt;= <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">                close(fd1);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(fd2 &gt;= <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">                close(fd2);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="客户端代码"><a href="#客户端代码" class="headerlink" title="客户端代码"></a>客户端代码</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;errno.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;netinet/in.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SERVER_IP       <span class="string">&quot;127.0.0.1&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SERVER_PORT     8889</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MSG_STR         <span class="string">&quot;Hello World!&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc,<span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">        <span class="type">int</span>                     conn_fd = <span class="number">-1</span>;</span><br><span class="line">        <span class="type">int</span>                     rv = <span class="number">-1</span>;</span><br><span class="line">        <span class="type">char</span>                    buf[<span class="number">1024</span>];</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span>      <span class="title">serv_addr</span>;</span></span><br><span class="line"></span><br><span class="line">        conn_fd = socket(AF_INET,SOCK_STREAM,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span>( conn_fd &lt; <span class="number">0</span> )</span><br><span class="line">        &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;creat socket failure: %s\n&quot;</span>,strerror(errno));</span><br><span class="line">                <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;soket creat fd[%d]\n&quot;</span>,conn_fd);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">memset</span>(&amp;serv_addr,<span class="number">0</span>,<span class="keyword">sizeof</span>(serv_addr));</span><br><span class="line">        serv_addr.sin_family = AF_INET;</span><br><span class="line">        serv_addr.sin_port = htons(serv_addr.sin_addr);</span><br><span class="line">    	<span class="comment">/*127.0.0.1是点分十进制的字符串，用inet_aton转为四字节整数形式*/</span></span><br><span class="line">        inet_aton(SERVER_IP,&amp;serv_addr.sin_addr);	</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(connet(conn_fd,(<span class="keyword">struct</span> sockaddr *)&amp;serv_addr,<span class="keyword">sizeof</span>(serv_addr)) &lt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;connect to server [%s:%d] failure: %s\n&quot;</span>,SERVER_IP,SERVER_PORT,strerror(errno));</span><br><span class="line">                <span class="keyword">return</span> <span class="number">-2</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>( write(conn_fd,MSG_STR,<span class="built_in">strlen</span>(MSG_STR)) &lt; <span class="number">0</span> )</span><br><span class="line">        &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;write data to server [%s:%d] failure: %s\n&quot;</span>,SERVER_IP,SERVER_PORT,strerror(errno));</span><br><span class="line">                close(conn_fd);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"> 		<span class="built_in">memset</span>(buf,<span class="number">0</span>,<span class="keyword">sizeof</span>(buf));</span><br><span class="line">        rv = read( conn_fd,buf,<span class="keyword">sizeof</span>(buf));</span><br><span class="line">        <span class="keyword">if</span>(rv &lt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;read data from server faliure: %s\n&quot;</span>,strerror(errno));</span><br><span class="line">                close(conn_fd);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>( <span class="number">0</span> == rv )</span><br><span class="line">        &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;server disconnected\n&quot;</span>);</span><br><span class="line">                close(conn_fd);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;read %d bytes data from server: &#x27;%s&#x27;\n&quot;</span>,rv,buf);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">li@ubuntu22:~/apue$ vim dir.c</span><br><span class="line">li@ubuntu22:~/apue$ gcc dir.c -o dir</span><br><span class="line">li@ubuntu22:~/apue$ ./dir</span><br><span class="line">find file: file1.txt</span><br><span class="line">find file: ..</span><br><span class="line">find file: file2.txt</span><br><span class="line">find file: .</span><br><span class="line">li@ubuntu22:~/apue$ ls directory -la</span><br><span class="line">total 8</span><br><span class="line">drwxr-xr-x 2 li li 4096  9月 24 21:16 .</span><br><span class="line">drwxrwxr-x 3 li li 4096  9月 24 21:16 ..</span><br><span class="line">-rw-r--r-- 1 li li    0  9月 24 21:16 file1.txt</span><br><span class="line">-rw-r--r-- 1 li li    0  9月 24 21:16 file2.txt</span><br></pre></td></tr></table></figure>
 
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">./socket_server</span></span><br><span class="line">socket creat fd[3]</span><br><span class="line">socket [3] bind on port [8889] for all IP address ok</span><br><span class="line">Start waiting and accept new client connect...</span><br><span class="line">accept new client[16.4.1.0:15862] with fd [4]</span><br><span class="line">read 12 bytes data from client[4] and echo it back:&#x27;Hello World!&#x27;</span><br><span class="line">Start waiting and accept new client connect...</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">./socket_client</span></span><br><span class="line">soket creat fd[3]</span><br><span class="line">read 12 bytes data from server: &#x27;Hello World!&#x27;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="socket-函数"><a href="#socket-函数" class="headerlink" title="socket()函数"></a>socket()函数</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">socket</span><span class="params">(<span class="type">int</span> doamin,<span class="type">int</span> type,<span class="type">int</span> protocol)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>Socket()用于创建一个socket描述符，标识一个socket。</p>
+<ul>
+<li>domain：协议域，决定了socket的地址类型，如 AF_INET要用IPV4地址与端口号</li>
+<li>type：指定socket类型，常见类型：SOCK_STREM（TCP），SOCK_DGRAM(UDP)</li>
+<li>protocol：指定协议，一般默认为0即可，0可以根据第二参数自动匹配相应的协议</li>
+</ul>
+<h3 id="bind-函数"><a href="#bind-函数" class="headerlink" title="bind()函数"></a>bind()函数</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">bind</span><span class="params">(<span class="type">int</span> sockfd,<span class="type">const</span> <span class="keyword">struct</span> sockaddr *addr,<span class="type">socklen_t</span> addrlen)</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>sockfd：socket描述符</li>
+<li>addr：sockaddr 类型的指针，储存地址和端口。存储IPv4的结构体类型为：struct sockaddr_in，存储IPv6的结构体类型为：struct sockaddr_in6</li>
+<li>addrlen：地址长度</li>
+</ul>
+<h3 id="listen-函数"><a href="#listen-函数" class="headerlink" title="listen()函数"></a>listen()函数</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">listen</span><span class="params">(<span class="type">int</span> sockfd,<span class="type">int</span> backlog)</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>sockfd：要监听的socket描述字</li>
+<li>backlog：相应socket可以排队的最大连接数</li>
+</ul>
+<h3 id="accept-函数"><a href="#accept-函数" class="headerlink" title="accept()函数"></a>accept()函数</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">accept</span><span class="params">(<span class="type">int</span> sockfd,<span class="keyword">struct</span> sockaddr *addr,<span class="type">socklen_t</span> addrlen)</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>sockfd：监听socket描述字</li>
+<li>addr：struct sockaddr*类型的指针</li>
+<li>addrlen：地址长度</li>
+<li>返回值：一个新的描述符用于和客户端通信</li>
+</ul>
+<h3 id="connect-函数"><a href="#connect-函数" class="headerlink" title="connect()函数"></a>connect()函数</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">connect</span><span class="params">(<span class="type">int</span> sockfd,<span class="keyword">struct</span> sockaddr *addr,<span class="type">socklen_t</span> addrlen)</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>sockfd：客户端的socket描述字</li>
+<li>addr：服务器的socket地址</li>
+<li>addrlen：socket地址长度</li>
+</ul>
+<h3 id="close-和shutdown-函数"><a href="#close-和shutdown-函数" class="headerlink" title="close()和shutdown()函数"></a>close()和shutdown()函数</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">close</span><span class="params">(<span class="type">int</span> fd)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>对socket fd调用close()会触发TCP连接断开的四路挥手。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">shutdown</span><span class="params">(<span class="type">int</span> sockfd,<span class="type">int</span> how)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>shutdown()函数可以半关闭套接字。</p>
+<p>how值：</p>
+<ul>
+<li>SHUT_RD：不可再读入数据</li>
+<li>SHUT_WR：不可再写入数据</li>
+<li>SHUT_RDWR：既不可读，也不可写</li>
+</ul>
 
       
 
@@ -503,7 +410,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2023/09/23/APUE%E5%AD%A6%E4%B9%A0/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2023/10/10/APUE-%E7%BD%91%E7%BB%9Csocket%E9%80%9A%E4%BF%A1/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -518,7 +425,7 @@
 <nav id="article-nav">
   
   
-    <a href="/2023/09/09/Linux%E5%91%BD%E4%BB%A4/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/09/23/APUE-%E6%96%87%E4%BB%B6IO/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title"></div>
       <i class="icon-circle-right"></i>
     </a>
@@ -546,7 +453,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#APUE"><span class="toc-number">1.</span> <span class="toc-text">APUE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%93%E5%87%BD%E6%95%B0%E5%92%8C%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="toc-number">1.1.</span> <span class="toc-text">库函数和系统调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6I-O%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text">文件I&#x2F;O系统调用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%92%8C%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6"><span class="toc-number">1.2.1.</span> <span class="toc-text">文件和文件描述符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%89%A9%E5%B1%95%E5%90%8D"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">文件扩展名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">文件类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">文件描述符</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6I-O%E6%93%8D%E4%BD%9C"><span class="toc-number">1.2.2.</span> <span class="toc-text">文件I&#x2F;O操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E7%BC%96%E5%86%99"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">程序编写</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">程序编译运行</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6I-O%E6%93%8D%E4%BD%9C%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.3.</span> <span class="toc-text">文件I&#x2F;O操作函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#open-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">open()系统调用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#creat-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">creat()系统调用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#close-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">close()系统调用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#write-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="toc-number">1.2.3.4.</span> <span class="toc-text">write()系统调用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#read-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="toc-number">1.2.3.5.</span> <span class="toc-text">read()系统调用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lseek-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="toc-number">1.2.3.6.</span> <span class="toc-text">lseek()系统调用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dup-%E5%92%8Cdup2-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="toc-number">1.2.3.7.</span> <span class="toc-text">dup()和dup2()系统调用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#stat-%E5%92%8Cfstat-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="toc-number">1.2.3.8.</span> <span class="toc-text">stat()和fstat()系统调用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#access-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="toc-number">1.2.3.9.</span> <span class="toc-text">access()系统调用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#unlink-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="toc-number">1.2.3.10.</span> <span class="toc-text">unlink()系统调用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rename-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="toc-number">1.2.3.11.</span> <span class="toc-text">rename()系统调用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%A4%B9%E6%93%8D%E4%BD%9C%E7%9B%B8%E5%85%B3%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="toc-number">1.2.3.12.</span> <span class="toc-text">文件夹操作相关系统调用</span></a></li></ol></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#APUE-%E7%BD%91%E7%BB%9Csocket%E9%80%9A%E4%BF%A1"><span class="toc-number">1.</span> <span class="toc-text">APUE-网络socket通信</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1"><span class="toc-number">1.1.</span> <span class="toc-text">网络通信</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#OSI%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.1.1.</span> <span class="toc-text">OSI七层模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP-IP%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.1.2.</span> <span class="toc-text">TCP&#x2F;IP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%8E%A5%E5%8F%A3%E5%B1%82"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">网络接口层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">网络层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E5%B1%82"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">传输层</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#UDP%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.1.2.3.1.</span> <span class="toc-text">UDP协议</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#TCP%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.1.2.3.2.</span> <span class="toc-text">TCP协议</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%B1%82"><span class="toc-number">1.1.2.4.</span> <span class="toc-text">应用层</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#socket%E7%BC%96%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text">socket编程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#socket%E9%80%9A%E4%BF%A1%E7%AE%80%E4%BB%8B"><span class="toc-number">1.2.1.</span> <span class="toc-text">socket通信简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#socket%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%BB%A3%E7%A0%81"><span class="toc-number">1.2.2.</span> <span class="toc-text">socket服务器和客户端代码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BB%A3%E7%A0%81"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">服务器代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%BB%A3%E7%A0%81"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">客户端代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#socket-%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.3.</span> <span class="toc-text">socket()函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bind-%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.4.</span> <span class="toc-text">bind()函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#listen-%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.5.</span> <span class="toc-text">listen()函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#accept-%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.6.</span> <span class="toc-text">accept()函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#connect-%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.7.</span> <span class="toc-text">connect()函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#close-%E5%92%8Cshutdown-%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.8.</span> <span class="toc-text">close()和shutdown()函数</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
